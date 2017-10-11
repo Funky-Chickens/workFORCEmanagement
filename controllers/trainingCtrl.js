@@ -19,9 +19,20 @@ module.exports.getSingleTrainingProgram = (req, res, next)=>{
   const { Training } = req.app.get('models');
   Training.findById(req.params.id)
   .then( (oneTraining) =>{
-    res.render('training-prog', oneTraining.dataValues);
+    let oneT = oneTraining.dataValues;
+    res.render('training-prog', {oneT});
   })
   .catch( (err) => {
     next(err);
   });
 };
+
+// module.exports.postTrainingPrograms = (req, res, next) => {
+//   const { Training } = req.app.get('models');
+//   Training.create()
+// }
+
+
+module.exports.renderTrainingCreatePage = (req, res, next) =>{
+  res.render('training-create', {});
+}
