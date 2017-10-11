@@ -19,7 +19,6 @@ module.exports = function(sequelize, DataTypes) {
           through: 'EmployeeComputers',
           foreignKey: 'employee_id'
         });
-        
     };
   return Employee;
 }
