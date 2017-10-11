@@ -1,62 +1,64 @@
-[
-    {
-        "first_name": "Grace",
-        "last_name": "Bahringer",
-        "dept_id": "1",
-        "hire_date": "2006-04-25T23:59:03.244Z"
-    },
-    {
-        "first_name": "Chris",
-        "last_name": "Mellor",
-        "dept_id": "1",
-        "hire_date": "2006-04-25T23:59:03.244Z"
-    },
-    {
-        "first_name": "Cait",
-        "last_name": "Rocco",
-        "dept_id": "2",
-        "hire_date": "2006-04-25T23:59:03.244Z"
-    },
-    {
-        "first_name": "Jason",
-        "last_name": "Monorail",
-        "dept_id": "2",
-        "hire_date": "2006-04-25T23:59:03.244Z"
-    },
-    {
-        "first_name": "Greta",
-        "last_name": "Moseley",
-        "dept_id": "3",
-        "hire_date": "2006-04-25T23:59:03.244Z"
-    },
-    {
-        "first_name": "Emily",
-        "last_name": "Lemmon",
-        "dept_id": "3",
-        "hire_date": "2006-04-25T23:59:03.244Z"
-    },
-    {
-        "first_name": "Michael",
-        "last_name": "Meyers",
-        "dept_id": "4",
-        "hire_date": "2006-04-25T23:59:03.244Z"
-    },
-    {
-        "first_name": "Jason",
-        "last_name": "Voorhees",
-        "dept_id": "4",
-        "hire_date": "2006-04-25T23:59:03.244Z"
-    },
-    {
-        "first_name": "Jack",
-        "last_name": "Skellington",
-        "dept_id": "5",
-        "hire_date": "2006-04-25T23:59:03.244Z"
-    },
-    {
-        "first_name": "Count",
-        "last_name": "Dracula",
-        "dept_id": "5",
-        "hire_date": "2006-04-25T23:59:03.244Z"
-    }
-]
+{
+   "employees": [
+        {
+            "first_name": "Grace",
+            "last_name": "Bahringer",
+            "dept_id": 1,
+            "hire_date": "2006-04-25T23:59:03.244Z"
+        },
+        {
+            "first_name": "Chris",
+            "last_name": "Mellor",
+            "dept_id": 1,
+            "hire_date": "2006-04-25T23:59:03.244Z"
+        },
+        {
+            "first_name": "Cait",
+            "last_name": "Rocco",
+            "dept_id": 2,
+            "hire_date": "2006-04-25T23:59:03.244Z"
+        },
+        {
+            "first_name": "Jason",
+            "last_name": "Monorail",
+            "dept_id": 2,
+            "hire_date": "2006-04-25T23:59:03.244Z"
+        },
+        {
+            "first_name": "Greta",
+            "last_name": "Moseley",
+            "dept_id": 3,
+            "hire_date": "2006-04-25T23:59:03.244Z"
+        },
+        {
+            "first_name": "Emily",
+            "last_name": "Lemmon",
+            "dept_id": 3,
+            "hire_date": "2006-04-25T23:59:03.244Z"
+        },
+        {
+            "first_name": "Michael",
+            "last_name": "Meyers",
+            "dept_id": 4,
+            "hire_date": "2006-04-25T23:59:03.244Z"
+        },
+        {
+            "first_name": "Jason",
+            "last_name": "Voorhees",
+            "dept_id": 4,
+            "hire_date": "2006-04-25T23:59:03.244Z"
+        },
+        {
+            "first_name": "Jack",
+            "last_name": "Skellington",
+            "dept_id": 5,
+            "hire_date": "2006-04-25T23:59:03.244Z"
+        },
+        {
+            "first_name": "Count",
+            "last_name": "Dracula",
+            "dept_id":  5,
+            "hire_date": "2006-04-25T23:59:03.244Z"
+        }
+    ]
+}
