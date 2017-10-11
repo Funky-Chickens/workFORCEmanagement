@@ -1,6 +1,6 @@
 {
   "development": {
-    "database": "bangazon-workforce",
+    "database": "bangazon_workforce",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
