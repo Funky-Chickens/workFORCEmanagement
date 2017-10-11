@@ -1,0 +1,29 @@
+{
+    "departments": [
+      {
+        "name": "Human Resources",
+        "supervisor_id": 2,
+        "budget": 1947
+      },
+      {
+        "name": "Information Technology",
+        "supervisor_id": 1,
+        "budget": 19470
+      },
+      {
+        "name": "Customer Support",
+        "supervisor_id": 4,
+        "budget": 48955587
+      },
+      {
+        "name": "Logistics",
+        "supervisor_id": 3,
+        "budget": 2874793
+      },
+      {
+        "name": "Research and Development",
+        "supervisor_id": 5,
+        "budget": 7917848
+      }
+    ]
+  }
