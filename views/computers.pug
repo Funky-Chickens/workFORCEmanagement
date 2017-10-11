@@ -1,0 +1,6 @@
+extends index.pug
+
+block content
+    ul
+        each computer in comps
+            li Computer Id: #{computer.id}<br>Manufacturer: #{computer.manufacturer}<br>Make: #{computer.make}<br>Purchase Date: #{computer.purchase_date}
