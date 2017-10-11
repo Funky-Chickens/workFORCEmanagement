@@ -1,0 +1,54 @@
+{
+  "shows": [
+    {
+      "manufacturer": "Lenovo",
+      "make": "Pro",
+      "purchase_date": "2006-04-25T23:59:03.244Z",
+    },
+    {
+    "manufacturer": "Dell",
+    "make": "Pro",
+    "purchase_date": "2006-04-25T23:59:03.244Z",
+    },
+    {
+    "manufacturer": "HP",
+    "make": "Super",
+    "purchase_date": "2006-04-25T23:59:03.244Z",
+    },
+    {
+    "manufacturer": "Apple",
+    "make": "Macbook",
+    "purchase_date": "2006-04-25T23:59:03.244Z",
+    },
+    {
+    "manufacturer": "MSi",
+    "make": "Special",
+    "purchase_date": "2006-04-25T23:59:03.244Z",
+    },
+    {
+    "manufacturer": "Acer",
+    "make": "Pro",
+    "purchase_date": "2006-04-25T23:59:03.244Z",
+    },
+    {
+    "manufacturer": "HP",
+    "make": "Pro",
+    "purchase_date": "2006-04-25T23:59:03.244Z",
+    },
+    {
+    "manufacturer": "Dell",
+    "make": "Pro",
+    "purchase_date": "2006-04-25T23:59:03.244Z",
+    },
+    {
+    "manufacturer": "Apple",
+    "make": "Macbook",
+    "purchase_date": "2006-04-25T23:59:03.244Z",
+    },
+    {
+    "manufacturer": "Acer",
+    "make": "Pro",
+    "purchase_date": "2006-04-25T23:59:03.244Z",
+    }
+  ]
+}
