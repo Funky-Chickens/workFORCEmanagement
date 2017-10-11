@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
   Training.associate = (models) => {//associate with employee model through join table of EmployeeTrainings
     Training.belongsToMany(models.Employee, {
       through: 'EmployeeTrainings',
-      foreignKey:'trainingId' //key on join table
+      foreignKey:'training_id' //key on join table
     });
   };
 
