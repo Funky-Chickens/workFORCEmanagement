@@ -13,9 +13,11 @@ router.get('/employees', getEmployees);
 // //SINGLE EMPLOYEE
 router.get('/employees/:id', getSingleEmployee);
 
+
 // router.patch('/employees/:id', updateEmployee);
 
 // //EMPLOYEE FORM - should patch navigate to the form as well??
 // router.get('/employees/create', renderCreateEmpPage);
 
 module.exports = router;
+
