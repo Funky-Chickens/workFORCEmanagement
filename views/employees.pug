@@ -1,0 +1,6 @@
+extends index.pug
+
+block content
+    ul
+        each employee in emps
+            li Name: #{employee.first_name} #{employee.last_name}<br>Department #{employee.dept_id}<br> Employee Id: #{employee.id}

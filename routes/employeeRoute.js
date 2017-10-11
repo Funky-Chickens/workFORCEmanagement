@@ -8,12 +8,14 @@ const { getEmployees, renderCreateEmpPage, postEmployee, getSingleEmployee, upda
 //EMPLOYEES
 router.get('/employees', getEmployees);
 
-router.post('/employees', postEmployee);
+// router.post('/employees', postEmployee);
 
-//SINGLE EMPLOYEE
+// //SINGLE EMPLOYEE
 router.get('/employees/:id', getSingleEmployee);
 
-router.patch('/employees/:id', updateEmployee);
+// router.patch('/employees/:id', updateEmployee);
 
-//EMPLOYEE FORM - should patch navigate to the form as well??
-router.get('/employees/create', renderCreateEmpPage);
+// //EMPLOYEE FORM - should patch navigate to the form as well??
+// router.get('/employees/create', renderCreateEmpPage);
+
+module.exports = router;
