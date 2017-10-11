@@ -21,6 +21,5 @@ module.exports = {
   },
   down: function(queryInterface, Sequelize) {
     return queryInterface.dropTable('Computers');
-    return queryInterface.dropTable('Shows');
   }
 };
