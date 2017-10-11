@@ -12,8 +12,8 @@ module.exports = function(sequelize, DataTypes) {
           through: 'EmployeeTrainings',
           foreignKey: 'employee_id'
         });
-        Employee.belongsTo(models.Department, { 
-          foreignKey: 'dept_id' 
+        Employee.belongsTo(models.Department, {
+          foreignKey: 'dept_id'
         });
         Employee.belongsToMany(models.Computer, {
           through: 'EmployeeComputers',
