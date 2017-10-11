@@ -8,11 +8,11 @@ const { getComputers, postComputer, getSingleComputer, deleteComputer } = requir
 //COMPUTERS
 router.get('/computers', getComputers);
 
-router.post('/computers', postComputer);
+// router.post('/computers', postComputer);
 
-//SINGLE COMPUTER
-router.get('/computers/:id', getSingleComputer);
+// //SINGLE COMPUTER
+// router.get('/computers/:id', getSingleComputer);
 
-router.delete('/computers/:id', deleteComputer);
+// router.delete('/computers/:id', deleteComputer);
 
 module.exports = router;
