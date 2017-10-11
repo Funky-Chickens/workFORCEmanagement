@@ -7,7 +7,6 @@ module.exports.getEmployees = (req, res, next) => {
       let emps = employees.map( (emps) => {
         return emps.dataValues;
       });
-      console.log(emps);
       res.render('employees', {emps});
   })
   .catch( (err) => {
@@ -21,7 +20,6 @@ module.exports.getSingleEmployee = (req, res, next) => {
   Employee.findById(req.params.id) // love those built-in Sequelize methods
     .then( (employee) => {
       let emp = employee.dataValues;
-      console.log(employee.dataValues);
       res.render('employee', {emp});
       
   })
