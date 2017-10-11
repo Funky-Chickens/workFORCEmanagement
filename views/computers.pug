@@ -1,8 +1,6 @@
-doctype html
-html
-  head
-    title Bangazon Workforce Managament
-  body
-    include navbar.pug
-    h1 Bangazon Workforce Managament
-    h2 Here we shall have a list of all computers.
+extends index.pug
+
+block content
+    ul
+        each computer in comps
+            li Computer Id: #{computer.id}<br>Manufacturer: #{computer.manufacturer}<br>Make: #{computer.make}<br>Purchase Date: #{computer.purchase_date}

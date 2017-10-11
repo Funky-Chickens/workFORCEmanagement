@@ -1,8 +1,6 @@
-doctype html
-html
-  head
-    title Bangazon Workforce Managament
-  body
-    include navbar.pug
-    h1 Bangazon Workforce Managament
-    h2 Here we shall have a detail view of computer specs.
+extends index.pug
+
+block content
+    p Computer Id: #{comp.id}<br>Manufacturer: #{comp.manufacturer}<br>Make: #{comp.make}<br> Purchase Date: #{comp.purchase_date}
+
+    input(type="button", value="Delete")
