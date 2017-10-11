@@ -23,6 +23,6 @@ app.use(routes);
 // Add a 404 error handler
 // Add error handler to pipe all server errors to from the routing middleware
 
-app.listen(port, () => {
-  console.log(`listening on port ${port}` );
+app.listen(4000, () => {
+  console.log('listening on port 4000' );
 });
