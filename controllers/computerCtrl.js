@@ -1,5 +1,3 @@
-'use strict'
-
 module.exports.getComputers = (req, res, next) => {
   const { Computer } = req.app.get('models');
   Computer.findAll() // love those built-in Sequelize methods
@@ -7,7 +5,6 @@ module.exports.getComputers = (req, res, next) => {
     let comps = computers.map( (comp) => {
       return comp.dataValues;
     });
-    console.log(comps);
     res.render('computers', {comps});
   })
   .catch( (err) => {
@@ -25,5 +22,5 @@ module.exports.getOneComputer = (req, res, next) => {
   })
   .catch( (err) => {
     res.status(500).json({"error": err})
-  })
-}
+  });
+};

@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-// pipe all other requests through the route modules
+// // pipe all other requests through the route modules
 router.use(require('./computerRoute'));
 // router.use(require('./departmentRoute'));
 // router.use(require('./employeeRoute'));

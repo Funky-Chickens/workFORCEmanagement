@@ -8,10 +8,12 @@ const { getDepartments, postDepartment, renderDeptCreatePage, getSingleDepartmen
 //DEPARTMENTS
 router.get('/departments', getDepartments);
   
-router.post('/departments', postDepartment);
+// router.post('/departments', postDepartment);
   
-//SINGLE DEPARTMENT
-router.get('/departments/:id', getSingleDepartment);
+// //SINGLE DEPARTMENT
+// router.get('/departments/:id', getSingleDepartment);
 
-//DEPARTMENT FORM
-router.get('/departments/create', renderDeptCreatePage);
+// //DEPARTMENT FORM
+// router.get('/departments/create', renderDeptCreatePage);
+
+module.exports = router;
