@@ -4,28 +4,48 @@
 {
     "employeeTrainings": [
       {
-        "name": "Equity Training",
-        "start_date": "2017-04-25T23:59:03.244Z",
-        "end_date": "2017-05-25T23:59:03.244Z",
-        "max_attendees": 5
+        "employee_id": 1,
+        "training_id": 5
       },
       {
-        "name": "Typing for dummies",
-        "start_date": "2017-12-25T23:59:03.244Z",
-        "end_date": "2017-12-25T23:59:03.244Z",
-        "max_attendees": 5
+        "employee_id": 3,
+        "training_id": 4
       },
       {
-        "name": "Computer Literacy",
-        "start_date": "2017-01-25T23:59:03.244Z",
-        "end_date": "2017-01-25T23:59:03.244Z",
-        "max_attendees": 5
+        "employee_id": 2,
+        "training_id": 3
       },
       {
-        "name": "Bookkeeping with QuickBooks",
-        "start_date": "2017-10-25T23:59:03.244Z",
-        "end_date": "2017-10-25T23:59:03.244Z",
-        "max_attendees": 3
+        "employee_id": 4,
+        "training_id": 2
+      },
+      {
+        "employee_id": 5,
+        "training_id": 1
+      },
+      {
+        "employee_id": 6,
+        "training_id": 2
+      },
+      {
+        "employee_id": 7,
+        "training_id": 4
+      },
+      {
+        "employee_id": 8,
+        "training_id": 3
+      },
+      {
+        "employee_id": 9,
+        "training_id": 5
+      },
+      {
+        "employee_id": 10,
+        "training_id": 1
+      },
+      {
+        "employee_id": 7,
+        "training_id": 3
       }
     ]
   }
