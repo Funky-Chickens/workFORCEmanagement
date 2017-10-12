@@ -11,7 +11,7 @@ router.get('/employees', getEmployees);
 
 // //EMPLOYEE FORM - should patch navigate to the form as well??
 
-router.get('/employees/create', renderCreateEmpPage)
+router.get('/employees/create', renderCreateEmpPage);
 
 
 

@@ -46,15 +46,13 @@ module.exports.getSingleEmployee = (req, res, next) => {
 };
 
 module.exports.renderCreateEmpPage = (req, res, next) =>{
-  const { Department } = req.app.get('models');
-  Department.findAll()
+  const { Department } = req.app.get('models');//require in department model
+  Department.findAll()  //find all departments
   .then( (departments) => {
-    console.log(departments)
-    let depts = departments.map( (dept) => {
-      console.log(dept);
+    let depts = departments.map( (dept) => {//map over departments and return the data values
       return dept.dataValues;
     });
-    res.render('employees-create', {depts});
+    res.render('employees-create', {depts});//render the employees create page with dropdown populated dynamically
   })
   .catch( (err) => {
     next(err);

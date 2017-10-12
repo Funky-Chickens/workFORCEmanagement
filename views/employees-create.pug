@@ -19,5 +19,5 @@ html
       select(name="dept_id")
         option(value="" disabled) Select:
           for dept in depts
-            option(value=`${dept.name}`) #{dept.name}
+            option(value=`${dept.id}`) #{dept.name}
       button(type="submit") Submit New Employee
