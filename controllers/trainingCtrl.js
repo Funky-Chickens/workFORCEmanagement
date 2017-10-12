@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports.getTrainingPrograms = (req, res, next) => {
+module.exports.getTrainings = (req, res, next) => {
   const { Training } = req.app.get('models');
   Training.findAll() // love those built-in Sequelize methods
   .then( (trainings) => {
@@ -24,6 +24,7 @@ module.exports.deleteTrainings = (req, res, next) => {
   .then((result) => {
     res.redirect('/training');
   })
+}
 
 module.exports.getSingleTrainingProgram = (req, res, next)=>{
   const { Training } = req.app.get('models');

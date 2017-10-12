@@ -14,11 +14,8 @@
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.1",
-<<<<<<< HEAD
     "method-override": "^2.3.10",
-=======
     "jquery": "^3.2.1",
->>>>>>> master
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
     "pug": "^2.0.0-rc.4",
