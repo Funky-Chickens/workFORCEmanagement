@@ -1,18 +1,30 @@
 'use strict'
 
-module.exports.getTrainingPrograms = (req, res, next) => {
+module.exports.getTrainings = (req, res, next) => {
   const { Training } = req.app.get('models');
   Training.findAll() // love those built-in Sequelize methods
   .then( (trainings) => {
-    let train= trainings.map( (program) =>{
-      return program.dataValues; //yank out data values into new array
+    let progs = trainings.map( (prog) => {
+      return prog.dataValues;
     });
-    res.render('training-progs', train);//show the training programs pug view with this info.
+    res.render('training-progs', {progs});
   })
   .catch( (err) => {
     next(err);
   });
 };
+
+module.exports.deleteTraining = (req, res, next) => {
+  const { Training } = req.app.get('models');
+  Training.destroy({
+    where: {
+      id: req.params.id,
+    }
+  })
+  .then((result) => {
+    res.redirect('/training');
+  })
+}
 
 module.exports.getSingleTrainingProgram = (req, res, next)=>{
   const { Training } = req.app.get('models');
