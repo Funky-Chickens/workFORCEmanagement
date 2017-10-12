@@ -17,7 +17,7 @@ module.exports.getEmployees = (req, res, next) => {
 
 
 module.exports.getSingleEmployee = (req, res, next) => {
-  const { Employee } = req.app.get('models');
+  const { Employee } = req.app.get('models');  
   Employee.findById(req.params.id) // love those built-in Sequelize methods
     .then( (employee) => {
       let emp = employee.dataValues;
@@ -27,6 +27,7 @@ module.exports.getSingleEmployee = (req, res, next) => {
     next(err); //Ship this nastyness off to our error handler at the bottom of the middleware stack in app.js
   });
 };
+
 
 module.exports.postEmployee = (req, res, next) => {
   const { Employee } = req.app.get('models');
@@ -45,3 +46,4 @@ module.exports.postEmployee = (req, res, next) => {
      res.status(500).json(err)
   })
 }
+
