@@ -2,7 +2,16 @@ extends index.pug
 
 block content
     ul(id="empData")
-            li Name: #{emp.first_name} #{emp.last_name}<br>Department #{emp.dept_id}<br> Employee Id: #{emp.id}
+            li Name: #{emp.first_name} #{emp.last_name}<br>Department: #{emp.Department.name}<br> Employee Id: #{emp.id}
+            ul
+                each training in Trainings
+                        li Attendee of #{training.dataValues.name} 
+            ul
+                each comp in Computers
+                        li Assigned Computer ID: #{comp.dataValues.id} 
+
+
+
     button(type='button' class='btn' id="btn") Edit Employee 
     div( class='hidden empForm' id="formBtn" action='')
         p(id='empID' class='hidden') #{emp.id}
