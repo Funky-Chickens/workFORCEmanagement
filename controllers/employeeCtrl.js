@@ -69,7 +69,6 @@ module.exports.postEmployee = (req, res, next) => {
     updatedAt:null
   })
   .then( (result) => {
-   console.log(result);
    res.status(200).redirect('/employees/create');
   })
   .catch( (err) => {
