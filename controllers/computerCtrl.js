@@ -24,3 +24,15 @@ module.exports.getOneComputer = (req, res, next) => {
     res.status(500).json({"error": err})
   });
 };
+
+module.exports.deleteComputer = (req, res, next) => {
+  const { Computer } = req.app.get('models');
+  Computer.destroy({
+    where: {
+      id: req.params.id,
+    }
+  })
+  .then((result) => {
+    res.redirect('/computers');
+  })
+}

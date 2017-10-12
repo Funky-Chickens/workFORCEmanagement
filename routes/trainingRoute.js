@@ -3,7 +3,7 @@
 const { Router } = require('express');
 const router = Router();
 
-const { getTrainingPrograms, postTrainingPrograms, getSingleTrainingProgram, updateTrainingProgram, deleteTrainingProgram, renderTrainingCreatePage } = require('../controllers/trainingCtrl');
+const { getTrainingPrograms, postTrainingPrograms, getSingleTrainingProgram, updateTrainingProgram, deleteTraining, renderTrainingCreatePage } = require('../controllers/trainingCtrl');
 
 //TRAINING PROGRAMS
 router.get('/training', getTrainingPrograms);
@@ -15,7 +15,7 @@ router.get('/training', getTrainingPrograms);
 
 // router.patch('/training/:id', updateTrainingProgram);
 
-// router.delete('/training/:id', deleteTrainingProgram);
+router.delete('/training/:id', deleteTraining);
 
 // //TRAINING FORM - should patch navigate to the form as well??
 // router.get('/training/create', renderTrainingCreatePage);

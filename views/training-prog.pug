@@ -1,8 +1,7 @@
-doctype html
-html
-  head
-    title Bangazon Workforce Managament
-  body
-    include navbar.pug
-    h1 Bangazon Workforce Managament
-    h2 Here we shall display the details of a training program.
+extends index.pug
+
+block content
+
+ form(method='POST' action=`/computers/${comp.id}?_method=DELETE`)
+   
+        button(type="submit") Delete
