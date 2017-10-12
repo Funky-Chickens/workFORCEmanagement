@@ -1,7 +1,5 @@
 'use strict'
 
-
-
 module.exports.getEmployees = (req, res, next) => {
   const { Employee } = req.app.get('models');
   const { Department } = req.app.get('models'); //require this in order to include it below
@@ -47,6 +45,20 @@ module.exports.getSingleEmployee = (req, res, next) => {
   });
 };
 
-
+module.exports.renderCreateEmpPage = (req, res, next) =>{
+  const { Department } = req.app.get('models');
+  Department.findAll()
+  .then( (departments) => {
+    console.log(departments)
+    let depts = departments.map( (dept) => {
+      console.log(dept);
+      return dept.dataValues;
+    });
+    res.render('employees-create', {depts});
+  })
+  .catch( (err) => {
+    next(err);
+  });
+}
 
 

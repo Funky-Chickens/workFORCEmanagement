@@ -4,5 +4,20 @@ html
     title Bangazon Workforce Managament
   body
     include navbar.pug
-    h1 Bangazon Workforce Managament
-    h2 Here we shall have an employee input form.
+    h1 Bangazon Workforce Managament Create New Employee Form
+    form(method="POST",action='/employees')
+      label(for="first_name") Employee First Name:
+      input(type="text", name="first_name")
+      br
+      label(for="last_name") Employee Last Name:
+      input(type="text", name="last_name")
+      br
+      label(for="hire_date") Start Date:
+      input(type="date", name="hire_date")
+      br
+      label(for="dept_id") Department:
+      select(name="dept_id")
+        option(value="" disabled) Select:
+          for dept in depts
+            option(value=`${dept.name}`) #{dept.name}
+      button(type="submit") Submit New Employee
