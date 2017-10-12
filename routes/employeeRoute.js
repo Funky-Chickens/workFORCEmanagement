@@ -3,12 +3,16 @@
 const { Router } = require('express');
 const router = Router();
 
-const { getEmployees, renderCreateEmpPage, postEmployee, getSingleEmployee, updateEmployee } = require('../controllers/employeeCtrl');
+const { getEmployees, renderCreateEmpPage, putEmployee, postEmployee, getSingleEmployee, updateEmployee } = require('../controllers/employeeCtrl');
 
 //EMPLOYEES
 router.get('/employees', getEmployees);
 
-router.put('/employees/:id', postEmployee);
+
+router.put('/employees/:id', putEmployee);
+
+router.post('/employees', postEmployee);
+
 
 // //SINGLE EMPLOYEE
 router.get('/employees/:id', getSingleEmployee);

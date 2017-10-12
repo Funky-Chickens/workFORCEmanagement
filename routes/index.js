@@ -5,14 +5,15 @@ const router = Router();
 
 //LANDING PAGE
 router.get('/', (req, res, next) => {
-  res.render('index');
+  res.render('index', {
+    currentDate: Date()
+  });
 });
 
 // // pipe all other requests through the route modules
 router.use(require('./computerRoute'));
 // router.use(require('./departmentRoute'));
+router.use(require('./trainingRoute'));
 router.use(require('./employeeRoute'));
-
-// router.use(require('./trainingRoute'));
 
 module.exports = router;

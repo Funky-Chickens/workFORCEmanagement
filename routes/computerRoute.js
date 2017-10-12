@@ -13,6 +13,6 @@ router.get('/computers', getComputers);
 // //SINGLE COMPUTER
 router.get('/computers/:id', getOneComputer);
 
-// router.delete('/computers/:id', deleteComputer);
+router.delete('/computers/:id', deleteComputer);
 
 module.exports = router;

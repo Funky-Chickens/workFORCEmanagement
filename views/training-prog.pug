@@ -1,8 +1,8 @@
-doctype html
-html
-  head
-    title Bangazon Workforce Managament
-  body
-    include navbar.pug
-    h1 Bangazon Workforce Managament
-    h2 Here we shall display the details of a training program.
+extends index.pug
+
+block content 
+    p Class Id: #{oneT.id}<br>Class Name: #{oneT.name}<br>Start Date: #{oneT.start_date}<br>End Date: #{oneT.end_date}<br>Max Attendees: #{oneT.max_attendees}
+   
+    form(method='POST' action=`/training/${oneT.id}?_method=DELETE`)
+        if oneT.end_date > currentDate 
+                button(type="submit") Delete
