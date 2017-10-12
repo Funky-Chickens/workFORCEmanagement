@@ -38,6 +38,7 @@ module.exports.postEmployee = (req, res, next) => {
     createdAt:null,
     updatedAt:null
   })
+
   .then( (result) => {
      res.status(200).json(result)
   })
