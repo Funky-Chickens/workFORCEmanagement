@@ -2,8 +2,7 @@ extends index.pug
 
 block content 
     p Class Id: #{oneT.id}<br>Class Name: #{oneT.name}<br>Start Date: #{oneT.start_date}<br>End Date: #{oneT.end_date}<br>Max Attendees: #{oneT.max_attendees}
-
-        
-    form(method='POST' action=`/training/${oneT.id}?_method=DELETE`)
    
-        button(type="submit") Delete
+    form(method='POST' action=`/training/${oneT.id}?_method=DELETE`)
+        if oneT.end_date > currentDate 
+                button(type="submit") Delete

@@ -20,6 +20,11 @@ app.set('models', require('./models')); //pulls in models/index.js by default. I
 app.set('view engine', 'pug');
 app.locals.globalWow = "Express is, like, MAGIC"; //If we end up needing some value to be available to every pug template, look into using something like this that can be accessed in the templates just like any variable we pass directly to the template.
 
+let d = new Date();
+let d2 = d.toISOString();
+app.locals.currentDate = d2.slice(0, -14);
+
+
 let routes = require('./routes/');
 
 app.use(bodyParser.urlencoded({extended: false}));
