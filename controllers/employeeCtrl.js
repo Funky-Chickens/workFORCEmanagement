@@ -1,10 +1,14 @@
 'use strict'
 
 module.exports.getEmployees = (req, res, next) => {
+  // console.log("models?", models);
   const { Employee } = req.app.get('models');
-  Employee.findAll() // love those built-in Sequelize methods
+  const { Department } = req.app.get('models');
+  Employee.findAll({include: [Department]}) 
     .then( (employees) => {
+      console.log("employees", employees);
       let emps = employees.map( (emps) => {
+        // emps.deptName = ;
         return emps.dataValues;
       });
       res.render('employees', {emps});
