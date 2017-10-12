@@ -7,9 +7,9 @@ const { getDepartments, postDepartment, renderDeptCreatePage, getSingleDepartmen
 
 //DEPARTMENTS
 router.get('/departments', getDepartments);
-  
+
 // router.post('/departments', postDepartment);
-  
+
 // //SINGLE DEPARTMENT
 // router.get('/departments/:id', getSingleDepartment);
 
