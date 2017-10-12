@@ -6,6 +6,9 @@ block content
             ul
                 each training in Trainings
                         li Attendee of #{training.dataValues.name} 
+            ul
+                each comp in Computers
+                        li Assigned Computer ID: #{comp.dataValues.id} 
 
 
 

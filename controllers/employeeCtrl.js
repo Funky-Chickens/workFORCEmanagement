@@ -31,10 +31,11 @@ module.exports.getSingleEmployee = (req, res, next) => {
   }) 
   .then( (employee) => {
       let emp = employee[0].dataValues;
-      console.log("THE EMPR!!!!!", emp.Trainings[0].dataValues.name);
+      console.log("THE EMPR!!!!!", emp.Computers[0].dataValues.id);
       res.render('employee', {
         emp,
-        Trainings: emp.Trainings
+        Trainings: emp.Trainings,
+        Computers: emp.Computers
       });
   })
   .catch( (err) => {
