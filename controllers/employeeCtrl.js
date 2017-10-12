@@ -31,7 +31,6 @@ module.exports.getSingleEmployee = (req, res, next) => {
   }) 
   .then( (employee) => {
       let emp = employee[0].dataValues;
-      console.log("THE EMPR!!!!!", emp.Computers[0].dataValues.id);
       res.render('employee', {
         emp,
         Trainings: emp.Trainings,
