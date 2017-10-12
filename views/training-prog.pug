@@ -1,10 +1,9 @@
 extends index.pug
 
-block content
-    p Class Id: #{program.id}<br>Class Name: #{program.name}<br>Start Date: #{program.start_date}<br>End Date: #{program.end_date}<br>Max Attendees: #{program.max_attendees}
+block content 
+    p Class Id: #{oneT.id}<br>Class Name: #{oneT.name}<br>Start Date: #{oneT.start_date}<br>End Date: #{oneT.end_date}<br>Max Attendees: #{oneT.max_attendees}
 
         
-//-     if program.start_date
-    form(method='POST' action=`/computers/${comp.id}?_method=DELETE`)
+    form(method='POST' action=`/training/${oneT.id}?_method=DELETE`)
    
         button(type="submit") Delete

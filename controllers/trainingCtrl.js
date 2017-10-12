@@ -14,7 +14,7 @@ module.exports.getTrainings = (req, res, next) => {
   });
 };
 
-module.exports.deleteTrainings = (req, res, next) => {
+module.exports.deleteTraining = (req, res, next) => {
   const { Training } = req.app.get('models');
   Training.destroy({
     where: {

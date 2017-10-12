@@ -14,11 +14,11 @@ router.get('/training', getTrainings);
 router.post('/training', postTrainingPrograms);
 
 // //SINGLE TRAINING PROGRAM
-// router.get('/training/:id', getSingleTrainingProgram);
+router.get('/training/:id', getSingleTrainingProgram);
 
 // router.patch('/training/:id', updateTrainingProgram);
 
-// router.delete('/training/:id', deleteTraining);
+router.delete('/training/:id', deleteTraining);
 
 module.exports = router;
 
