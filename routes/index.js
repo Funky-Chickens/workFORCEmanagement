@@ -13,6 +13,6 @@ router.use(require('./computerRoute'));
 // router.use(require('./departmentRoute'));
 router.use(require('./employeeRoute'));
 
-// router.use(require('./trainingRoute'));
+router.use(require('./trainingRoute'));
 
 module.exports = router;
