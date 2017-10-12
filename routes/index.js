@@ -5,7 +5,9 @@ const router = Router();
 
 //LANDING PAGE
 router.get('/', (req, res, next) => {
-  res.render('index');
+  res.render('index', {
+    currentDate: Date()
+  });
 });
 
 // // pipe all other requests through the route modules
