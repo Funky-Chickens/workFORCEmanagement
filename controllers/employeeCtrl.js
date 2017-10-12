@@ -19,16 +19,23 @@ module.exports.getEmployees = (req, res, next) => {
 module.exports.getSingleEmployee = (req, res, next) => {
   const { Employee } = req.app.get('models');  
   const { EmployeeComputers } = req.app.get('models');  
-  Employee.findAll( {
-    // include: {
-    //   model: "Computer" },
-    where: {
-      id: req.params.id
-    }
+  const { Computer } = req.app.get('models');  
+  Employee.findAll(
+    { 
+      include: [{ 
+        all: true 
+      }],
+      where: {
+        id: req.params.id
+      }
   }) 
   .then( (employee) => {
       let emp = employee[0].dataValues;
-      res.render('employee', {emp});
+      console.log("THE EMPR!!!!!", emp.Trainings[0].dataValues.name);
+      res.render('employee', {
+        emp,
+        Trainings: emp.Trainings
+      });
   })
   .catch( (err) => {
     next(err); //Ship this nastyness off to our error handler at the bottom of the middleware stack in app.js
