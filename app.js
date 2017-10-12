@@ -4,6 +4,11 @@ const express = require('express');
 const app = express();
 let bodyParser = require('body-parser');
 
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
 require('dotenv').config();
 const port = process.env.PORT || 8080
 console.log("port", port);

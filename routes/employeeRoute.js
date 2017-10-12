@@ -8,7 +8,7 @@ const { getEmployees, renderCreateEmpPage, postEmployee, getSingleEmployee, upda
 //EMPLOYEES
 router.get('/employees', getEmployees);
 
-// router.post('/employees', postEmployee);
+router.put('/employees/:id', postEmployee);
 
 // //SINGLE EMPLOYEE
 router.get('/employees/:id', getSingleEmployee);
