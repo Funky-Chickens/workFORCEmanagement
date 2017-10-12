@@ -5,12 +5,7 @@ module.exports.getComputers = (req, res, next) => {
     let comps = computers.map( (comp) => {
       return comp.dataValues;
     });
-<<<<<<< HEAD
-    console.log(comps);
-    res.render('computers', comps);
-=======
     res.render('computers', {comps});
->>>>>>> master
   })
   .catch( (err) => {
     next(err); //Ship this nastyness off to our error handler at the bottom of the middleware stack in app.js
