@@ -4,5 +4,18 @@ html
     title Bangazon Workforce Managament
   body
     include navbar.pug
-    h1 Bangazon Workforce Managament
-    h2 Here we shall have a training input form.
+    h1 Bangazon Workforce Managament Training Input Form
+      form(method='POST', action=`/training/`)
+        label(for="name") Training Program Name:
+        input(type="text", name="name")
+        br
+        label(for="start_date") Start Date:
+        input(type="date", name="start_date")
+        br
+        label(for="end_date") End Date:
+        input(type="date", name="end_date")
+        br
+        label(for="max_attendees") Maximum Number of Attendees:
+        input(type="number", name="max_attendees")
+        br
+        button(type="submit") Submit
