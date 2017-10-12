@@ -6,6 +6,7 @@ let bodyParser = require('body-parser');
 
 require('dotenv').config();
 const port = process.env.PORT || 8080
+console.log("port", port);
 
 
 
@@ -29,5 +30,5 @@ app.use(routes);
 // Add error handler to pipe all server errors to from the routing middleware
 
 app.listen(port, () => {
-  console.log(`listening on port ${port}` );
+  console.log(`listening on port ${port}`);
 });

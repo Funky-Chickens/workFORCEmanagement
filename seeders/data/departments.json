@@ -7,22 +7,22 @@
       },
       {
         "name": "Information Technology",
-        "supervisor_id": 1,
+        "supervisor_id": 4,
         "budget": 19470
       },
       {
         "name": "Customer Support",
-        "supervisor_id": 4,
+        "supervisor_id": 5,
         "budget": 48955587
       },
       {
         "name": "Logistics",
-        "supervisor_id": 3,
+        "supervisor_id": 7,
         "budget": 2874793
       },
       {
         "name": "Research and Development",
-        "supervisor_id": 5,
+        "supervisor_id": 9,
         "budget": 7917848
       }
     ]

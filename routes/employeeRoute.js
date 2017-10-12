@@ -11,7 +11,8 @@ const { getEmployees, renderCreateEmpPage, postEmployee, getSingleEmployee, upda
 // router.post('/employees', postEmployee);
 
 // //SINGLE EMPLOYEE
-// router.get('/employees/:id', getSingleEmployee);
+router.get('/employees/:id', getSingleEmployee);
+
 
 // router.patch('/employees/:id', updateEmployee);
 
@@ -19,3 +20,4 @@ const { getEmployees, renderCreateEmpPage, postEmployee, getSingleEmployee, upda
 // router.get('/employees/create', renderCreateEmpPage);
 
 module.exports = router;
+

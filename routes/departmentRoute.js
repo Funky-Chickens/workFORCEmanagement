@@ -6,7 +6,7 @@ const router = Router();
 const { getDepartments, postDepartment, renderDeptCreatePage, getSingleDepartment } = require('../controllers/departmentCtrl');
 
 //DEPARTMENTS
-// router.get('/departments', getDepartments);
+router.get('/departments', getDepartments);
 
 // router.post('/departments', postDepartment);
 
