@@ -2,7 +2,7 @@
     "employeeTrainings": [
       {
         "employee_id": 1,
-        "training_id": 5
+        "training_id": 1
       },
       {
         "employee_id": 3,
@@ -34,7 +34,7 @@
       },
       {
         "employee_id": 9,
-        "training_id": 5
+        "training_id": 2
       },
       {
         "employee_id": 10,
