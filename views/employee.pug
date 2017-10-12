@@ -1,7 +1,7 @@
 extends index.pug
 
 block content
-    ul
+    ul(id="empData")
             li Name: #{emp.first_name} #{emp.last_name}<br>Department #{emp.dept_id}<br> Employee Id: #{emp.id}
     button(type='button' class='btn' id="btn") Edit Employee 
     form( class='hidden empForm' id="formBtn" action='')
