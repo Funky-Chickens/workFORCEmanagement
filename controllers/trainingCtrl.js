@@ -7,7 +7,6 @@ module.exports.getTrainingPrograms = (req, res, next) => {
     let train= trainings.map( (program) =>{
       return program.dataValues; //yank out data values into new array
     });
-    console.log(train)
     res.render('training-progs', train);//show the training programs pug view with this info.
   })
   .catch( (err) => {
