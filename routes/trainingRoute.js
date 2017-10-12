@@ -9,9 +9,9 @@ const { getTrainingPrograms, postTrainingPrograms, getSingleTrainingProgram, upd
 router.get('/training', getTrainingPrograms);
 
 //TRAINING FORM - should patch navigate to the form as well??
-router.get('/training/create', renderTrainingCreatePage);
+router.get('/training/create', renderTrainingCreatePage);//has to go here so it doesn't conflict with training/:id route
 
-// router.post('/training', postTrainingPrograms);
+router.post('/training', postTrainingPrograms);
 
 //SINGLE TRAINING PROGRAM
 router.get('/training/:id', getSingleTrainingProgram);
