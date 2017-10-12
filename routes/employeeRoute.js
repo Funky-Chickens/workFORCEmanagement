@@ -6,7 +6,7 @@ const router = Router();
 const { getEmployees, renderCreateEmpPage, postEmployee, getSingleEmployee, updateEmployee } = require('../controllers/employeeCtrl');
 
 //EMPLOYEES
-// router.get('/employees', getEmployees);
+router.get('/employees', getEmployees);
 
 router.post('/employees', postEmployee);
 
