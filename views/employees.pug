@@ -3,7 +3,4 @@ extends index.pug
 block content
     ul
         each employee in emps
-            var id = #{employee.id};
-            var url = 'http://localhost:4000/employees/id'
-            div a(href = url) 
-                li <br>Name: #{employee.first_name} #{employee.last_name}<br>Department: #{employee.Department.name}<br>Employee Id: #{employee.id}
+            li Name: #{employee.first_name} #{employee.last_name}<br>Department #{employee.dept_id}<br> Employee Id: #{employee.id}
