@@ -20,8 +20,8 @@ module.exports.getSingleEmployee = (req, res, next) => {
   const { Employee } = req.app.get('models');  
   const { EmployeeComputers } = req.app.get('models');  
   Employee.findAll( {
-    include: {
-      model: "Computer" },
+    // include: {
+    //   model: "Computer" },
     where: {
       id: req.params.id
     }
