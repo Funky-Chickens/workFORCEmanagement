@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports.getComputers = (req, res, next) => {
   const { Computer } = req.app.get('models');
   Computer.findAll() // love those built-in Sequelize methods
@@ -16,7 +18,6 @@ module.exports.getOneComputer = (req, res, next) => {
   const { Computer } = req.app.get('models');
   Computer.findById(req.params.id)
   .then( (computer) => {
-    // res.status(200).json(computer)
     let comp = computer.dataValues
     res.render('computer', {comp});
   })
@@ -24,3 +25,15 @@ module.exports.getOneComputer = (req, res, next) => {
     res.status(500).json({"error": err})
   });
 };
+
+module.exports.deleteComputer = (req, res, next) => {
+  const { Computer } = req.app.get('models');
+  Computer.destroy({
+    where: {
+      id: req.params.id,
+    }
+  })
+  .then((result) => {
+    res.redirect('/computers');
+  })
+}
