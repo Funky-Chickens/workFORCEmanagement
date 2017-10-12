@@ -22,9 +22,26 @@ module.exports.getSingleEmployee = (req, res, next) => {
     .then( (employee) => {
       let emp = employee.dataValues;
       res.render('employee', {emp});
-      
   })
   .catch( (err) => {
     next(err); //Ship this nastyness off to our error handler at the bottom of the middleware stack in app.js
   });
 };
+
+module.exports.postEmployee = (req, res, next) => {
+  const { Employee } = req.app.get('models');
+  Employee.create({
+    first_name:req.body.first_name,
+    last_name:req.body.last_name,
+    dept_id: req.body.dept_id,
+    hire_date:req.body.hire_date,
+    createdAt:null,
+    updatedAt:null
+  })
+  .then( (result) => {
+     res.status(200).json(result)
+  })
+  .catch( (err) => {
+     res.status(500).json(err)
+  })
+}
