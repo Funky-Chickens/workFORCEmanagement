@@ -6,9 +6,10 @@ const router = Router();
 const { getEmployees, renderCreateEmpPage, postEmployee, getSingleEmployee, updateEmployee } = require('../controllers/employeeCtrl');
 
 //EMPLOYEES
-router.get('/employees', getEmployees);
+// router.get('/employees', getEmployees);
 
 router.put('/employees/:id', postEmployee);
+
 
 // //SINGLE EMPLOYEE
 router.get('/employees/:id', getSingleEmployee);
