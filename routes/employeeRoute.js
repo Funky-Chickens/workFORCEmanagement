@@ -13,6 +13,9 @@ router.put('/employees/:id', putEmployee);
 
 router.post('/employees', postEmployee);
 
+router.put('/employees/:id', putEmployee);
+
+
 
 // //SINGLE EMPLOYEE
 router.get('/employees/:id', getSingleEmployee);
