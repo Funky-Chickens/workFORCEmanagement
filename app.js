@@ -8,7 +8,7 @@ var methodOverride = require('method-override')
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
-gitapp.use(bodyParser.json())
+app.use(bodyParser.json())
 
 require('dotenv').config();
 const port = process.env.PORT || 8080

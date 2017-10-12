@@ -28,7 +28,6 @@ module.exports.getSingleEmployee = (req, res, next) => {
   });
 };
 
-<<<<<<< HEAD
 
 module.exports.putEmployee = (req, res, next) => {
   const { Employee } = req.app.get('models');  
@@ -44,8 +43,6 @@ module.exports.putEmployee = (req, res, next) => {
   });
 };
 
-=======
->>>>>>> 6b2352cd08cd2760950b891e3aded991a4291d46
 
 module.exports.postEmployee = (req, res, next) => {
   const { Employee } = req.app.get('models');
@@ -65,7 +62,3 @@ module.exports.postEmployee = (req, res, next) => {
   })
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 6b2352cd08cd2760950b891e3aded991a4291d46
