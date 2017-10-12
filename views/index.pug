@@ -2,8 +2,12 @@ doctype html
 html
   head
     title Bangazon Workforce Managament
+    link(rel='stylesheet', href='../styles/styles.css' type='text/css')
+    script(src='./main.js')
   body
     include navbar.pug
     h1 Bangazon Workforce Managament
-
     block content
+script
+    include ../node_modules/jquery/dist/jquery.js
+    include ../public/main.js

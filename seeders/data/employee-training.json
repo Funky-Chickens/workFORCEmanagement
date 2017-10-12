@@ -1,0 +1,48 @@
+{
+    "employeeTrainings": [
+      {
+        "employee_id": 1,
+        "training_id": 1
+      },
+      {
+        "employee_id": 3,
+        "training_id": 4
+      },
+      {
+        "employee_id": 2,
+        "training_id": 3
+      },
+      {
+        "employee_id": 4,
+        "training_id": 2
+      },
+      {
+        "employee_id": 5,
+        "training_id": 1
+      },
+      {
+        "employee_id": 6,
+        "training_id": 2
+      },
+      {
+        "employee_id": 7,
+        "training_id": 4
+      },
+      {
+        "employee_id": 8,
+        "training_id": 3
+      },
+      {
+        "employee_id": 9,
+        "training_id": 2
+      },
+      {
+        "employee_id": 10,
+        "training_id": 1
+      },
+      {
+        "employee_id": 7,
+        "training_id": 3
+      }
+    ]
+  }
