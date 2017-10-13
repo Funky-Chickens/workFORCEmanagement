@@ -13,7 +13,7 @@ router.get('/training/create', renderTrainingCreatePage);//has to go here so it 
 
 router.post('/training', postTrainingPrograms);
 
-// //SINGLE TRAINING PROGRAM
+ //SINGLE TRAINING PROGRAM
 router.get('/training/:id', getSingleTrainingProgram);
 
 // router.patch('/training/:id', updateTrainingProgram);
