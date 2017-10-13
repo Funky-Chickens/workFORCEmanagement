@@ -20,10 +20,6 @@ module.exports.getEmployees = (req, res, next) => {
 
 module.exports.getSingleEmployee = (req, res, next) => {
   const { Employee } = req.app.get('models');  
-  const { EmployeeComputers } = req.app.get('models');  
-  const { Computer } = req.app.get('models');  
-  const { Training } = req.app.get('models');
-  const { EmployeeTrainings } = req.app.get('models');  
   Employee.findAll(
     { 
       include: [{ 
@@ -48,6 +44,7 @@ module.exports.getSingleEmployee = (req, res, next) => {
 
 
 module.exports.putEmployee = (req, res, next) => {
+  console.log("reqbody", req.body);
   const { Employee } = req.app.get('models');  
   Employee.update({
     first_name: req.body.firstName,
@@ -57,7 +54,7 @@ module.exports.putEmployee = (req, res, next) => {
     res.status(200).send();
   })
   .catch( (err) => {
-    next(err); //Ship this nastyness off to our error handler at the bottom of the middleware stack in app.js
+    next(err); 
   });
 };
 

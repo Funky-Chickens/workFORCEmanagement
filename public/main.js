@@ -18,25 +18,25 @@ $(".btn").click(function(){
   });
   
 
-$("#btn2").click(function(){
-  let firstName =$('#firstName').val();
-  let lastName =$('#lastName').val();
-  let deptId =$('#deptId').val();
+// $("#btn2").click(function(){
+//   let firstName =$('#firstName').val();
+//   let lastName =$('#lastName').val();
+//   let deptId =$('#deptId').val();
 
-    let employeeObj = {
-      firstName, 
-      lastName, 
-      deptId};
-    console.log(employeeObj);
-      console.log(empId);
-    $.ajax({
-        type: "PUT",
-        url: `http://localhost:4000/employees/${empId}`, 
-        data: employeeObj
-      })
-      .then( (data) => {
-      });
-});
+//     let employeeObj = {
+//       firstName, 
+//       lastName, 
+//       deptId};
+//     console.log(employeeObj);
+//       console.log(empId);
+//     $.ajax({
+//         type: "PUT",
+//         url: `http://localhost:4000/employees/${empId}`, 
+//         data: employeeObj
+//       })
+//       .then( (data) => {
+//       });
+// });
 
 $("#btn2").click(function(){
   $("#formBtn").addClass("hidden");

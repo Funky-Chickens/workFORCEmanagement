@@ -14,10 +14,14 @@ block content
 
     button(type='button' class='btn' id="btn") Edit Employee 
     div( class='hidden empForm' id="formBtn" action='')
+    form(method='POST' action=`/employees/${emp.id}?_method=PUT`)
         p(id='empID' class='hidden') #{emp.id}
-        input(type='input' class='' id="firstName" value=emp.first_name)
-        input(type='input' class='' id="lastName" value=emp.last_name)
-        input(type='input' class='' id="deptId" value=emp.dept_id)
-        button( id="btn2") Submit 
-    div(id='statusIndicator')
-    
+        label(for="firstName") First Name
+        input(type='text' name='firstName' class='' id="firstName" value=emp.first_name)
+        label(for="lastName") Last Name
+        input(type='text' name='lastName' class='' id="lastName" value=emp.last_name)
+        label(for="deptId") Department ID
+        input(type='number' name='deptId' class='' id="deptId" value=emp.dept_id)
+        label(for="trainingprogId") Training Program ID
+        input(type='text' class='' name="trainingprogs" id="trainingprogId" value=Trainings[0].dataValues.id)
+        button(type="submit" id="btn2") Submit     
