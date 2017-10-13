@@ -2,10 +2,22 @@ extends index.pug
 
 block content
     ul(id="empData")
-            li Name: #{emp.first_name} #{emp.last_name}<br>Department #{emp.dept_id}<br> Employee Id: #{emp.id}
+            li Name: #{emp.first_name} #{emp.last_name}<br>Department: #{emp.Department.name}<br> Employee Id: #{emp.id}
+            ul
+                each training in Trainings
+                        li Attendee of #{training.dataValues.name} 
+            ul
+                each comp in Computers
+                        li Assigned Computer ID: #{comp.dataValues.id} 
+
+
+
     button(type='button' class='btn' id="btn") Edit Employee 
-    form( class='hidden empForm' id="formBtn" action='')
+    div( class='hidden empForm' id="formBtn" action='')
+        p(id='empID' class='hidden') #{emp.id}
         input(type='input' class='' id="firstName" value=emp.first_name)
         input(type='input' class='' id="lastName" value=emp.last_name)
-        input(type='input' class='' id="dept_id" value=emp.dept_id)
-        button(type='submit' form='formBtn' class='btn' id="btn") Submit 
+        input(type='input' class='' id="deptId" value=emp.dept_id)
+        button( id="btn2") Submit 
+    div(id='statusIndicator')
+    
