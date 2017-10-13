@@ -17,7 +17,16 @@ module.exports.getEmployees = (req, res, next) => {
 
 
 module.exports.getSingleEmployee = (req, res, next) => {
+  let possibles = [];
   const { Employee } = req.app.get('models');  
+  const { Training } = req.app.get('models');
+  Training.findAll()
+  .then( (trainings) => {
+    possibles = trainings.map( (training) => {
+      return training.dataValues;
+    })
+    console.log("possibles", possibles);
+  });
   Employee.findAll(
     { 
       include: [{ 
@@ -32,6 +41,7 @@ module.exports.getSingleEmployee = (req, res, next) => {
       res.render('employee', {
         emp,
         Trainings: emp.Trainings,
+        PossibleTrainings: possibles,
         Computers: emp.Computers,
         removeTraining: removeAssociationTraining //pass this function to a click event in the PUG
       });
@@ -55,10 +65,11 @@ let removeAssociationTraining = (employee_id, training_id) => {
 
 module.exports.putEmployee = (req, res, next) => {
   let body = req.body;
+  console.log("reqbody", body['training-id']);
   const { Employee } = req.app.get('models');  
   Employee.findById(req.params.id)
   .then( (foundEmp) => {
-    foundEmp.setTrainings(req.body.trainingprogs)
+    foundEmp.addTraining(body['training-id'])// pass in the value of the selected drop down item
     .then( (yay) => {
       res.status(200);
   })

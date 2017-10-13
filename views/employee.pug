@@ -24,6 +24,12 @@ block content
         input(type='number' name='deptId' class='' id="deptId" value=emp.dept_id)
         div Training Programs
             each train in Trainings
-                p #{train.dataValues.name}
-                button( (click)=`removeTraining(${emp.id}, ${train.dataValues.id})`) X
-        button(type="submit" id="btn2") Submit     
+                p #{train.name}
+                button( (click)=`removeTraining(${emp.id}, ${train.id})`) X 
+        div
+            label(for="training-id") Add Training for Employee:
+            select(name="training-id")
+                option(value="" disabled selected) Select:
+                    for opt in PossibleTrainings
+                        option(value=`${opt.id}`) #{opt.name}
+            button(type="submit" id="btn2") Submit     
