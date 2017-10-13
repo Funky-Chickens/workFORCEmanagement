@@ -1,7 +1,5 @@
 'use strict';
 
-// CHRIS WAS HERE BIATCH
-
 module.exports.getEmployees = (req, res, next) => {
   const { Employee } = req.app.get('models');
   const { Department } = req.app.get('models'); //require this in order to include it below
@@ -20,29 +18,25 @@ module.exports.getEmployees = (req, res, next) => {
 
 module.exports.getSingleEmployee = (req, res, next) => {
   const { Employee } = req.app.get('models');  
-  const { EmployeeComputers } = req.app.get('models');  
-  const { Computer } = req.app.get('models');  
-  const { Training } = req.app.get('models');
-  const { EmployeeTrainings } = req.app.get('models');  
-  Employee.findAll(
+  Employee.findAll(  //switched to findAll because it was the only kind of operator I could find in the docs to run a function to get stuff from a join table
     { 
       include: [{ 
-        all: true 
+        all: true //you can also include individual tables, but because of the join table in between, this include all will allow us to have access to an object with every related property
       }],
       where: {
-        id: req.params.id
+        id: req.params.id //this where statement takes the place of the effect of "getById"
       }
   }) 
   .then( (employee) => {
       let emp = employee[0].dataValues;
       res.render('employee', {
         emp,
-        Trainings: emp.Trainings,
+        Trainings: emp.Trainings, //Trainings is a property of this object - nested, same for Copmuters
         Computers: emp.Computers
       });
   })
   .catch( (err) => {
-    next(err); //Ship this nastyness off to our error handler at the bottom of the middleware stack in app.js
+    next(err); 
   });
 };
 
