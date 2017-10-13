@@ -22,6 +22,10 @@ block content
         input(type='text' name='lastName' class='' id="lastName" value=emp.last_name)
         label(for="deptId") Department ID
         input(type='number' name='deptId' class='' id="deptId" value=emp.dept_id)
-        label(for="trainingprogId") Training Program ID
-        input(type='text' class='' name="trainingprogs" id="trainingprogId" value=Trainings[0].dataValues.id)
+        div Training Programs
+            each train in Trainings
+                p #{train.dataValues.name}
+                button( (click)=`removeTraining(${emp.id}, ${train.dataValues.id})`) X
+        //- form(method='POST' action=`/employees/${emp.id}?_method=PUT`)
         button(type="submit" id="btn2") Submit     
+                //- div(data-trainingId=`training${train.dataValues.id}`) #{train.dataValues.name}

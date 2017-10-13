@@ -29,6 +29,8 @@ let d = new Date();
 let d2 = d.toISOString();
 app.locals.currentDate = d2.slice(0, -14);
 
+// getAllTrainings.then array .length
+// app.locals.numOfProgs = 
 
 let routes = require('./routes/');
 

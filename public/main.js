@@ -2,7 +2,8 @@
    let firstName =$('#firstName').val();
    let lastName =$('#lastName').val();
    let deptId =$('#deptId').val();
-   let empId = $('#empID').text()
+   let empId = $('#empID').text();
+   let trainingId = $('#trainingId').text();
    console.log(empId);
 
 $(".btn").click(function(){
@@ -43,3 +44,5 @@ $("#btn2").click(function(){
   alert("EMPLOYEE INFO SUCCESSFULLY UPDATED, mkay?")
   location.reload();;
 });
+
+$("#train")

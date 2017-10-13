@@ -1,7 +1,5 @@
 'use strict';
 
-// CHRIS WAS HERE BIATCH
-
 module.exports.getEmployees = (req, res, next) => {
   const { Employee } = req.app.get('models');
   const { Department } = req.app.get('models'); //require this in order to include it below
@@ -34,13 +32,24 @@ module.exports.getSingleEmployee = (req, res, next) => {
       res.render('employee', {
         emp,
         Trainings: emp.Trainings,
-        Computers: emp.Computers
+        Computers: emp.Computers,
+        removeTraining: removeAssociationTraining
       });
   })
   .catch( (err) => {
     next(err); //Ship this nastyness off to our error handler at the bottom of the middleware stack in app.js
   });
 };
+
+let removeAssociationTraining = (employee_id, training_id) => {
+  Employee.getById(employee_id)
+  .then( (foundEmp) => {
+    foundEmp.removeTrainings(training_id)
+    .then( (yay) => {
+      res.status(200);
+    })
+  })
+}
 
 
 module.exports.putEmployee = (req, res, next) => {
