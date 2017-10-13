@@ -5,6 +5,11 @@ const app = express();
 let bodyParser = require('body-parser');
 var methodOverride = require('method-override')
 
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
 require('dotenv').config();
 const port = process.env.PORT || 8080
 console.log("port", port);
