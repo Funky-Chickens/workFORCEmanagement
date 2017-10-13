@@ -34,9 +34,6 @@ a:hover {
     padding-bottom: 5%;
 }
 
-.nav-item {
-    padding-left: 3%;
-}
 
 .nav-link {
     font-size: 2rem;
@@ -48,12 +45,13 @@ a:hover {
 }
 
 .lists {
-    font-family:" Prata";
+   font-family:" Prata";
    font-size: 2rem;
    list-style: none;
    padding-bottom: 5px;
    border-bottom: 2px solid black;
-   margin-left: 20px;
+   margin-left: -40px;
+   padding-left: 40px;
 }
 
 .lists:hover{
