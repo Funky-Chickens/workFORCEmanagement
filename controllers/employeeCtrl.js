@@ -44,14 +44,22 @@ module.exports.getSingleEmployee = (req, res, next) => {
 
 
 module.exports.putEmployee = (req, res, next) => {
-  console.log("reqbody", req.body);
+  let body = req.body;
   const { Employee } = req.app.get('models');  
+  Employee.findById(req.params.id)
+  .then( (foundEmp) => {
+    foundEmp.setTrainings(req.body.trainingprogs)
+    .then( (yay) => {
+      res.status(200);
+  })
+})
   Employee.update({
     first_name: req.body.firstName,
     last_name: req.body.lastName,
     dept_id: req.body.deptId
-  }, {where:{id: req.params.id}}).then(function(employee){
-    res.status(200).send();
+  }, {where:{id: req.params.id}})
+  .then(function(employee){
+    res.status(200).redirect(`/employees/${req.params.id}`);
   })
   .catch( (err) => {
     next(err); 
