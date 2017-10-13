@@ -27,8 +27,6 @@ module.exports.deleteTraining = (req, res, next) => {
 }
 
 module.exports.getSingleTrainingProgram = (req, res, next)=>{
-  const { Employee } = req.app.get('models');
-  const { EmployeeTrainings } = req.app.get('models');
   const { Training } = req.app.get('models');
   Training.findAll(
     {
@@ -66,6 +64,21 @@ module.exports.postTrainingPrograms = (req, res, next) => {
      res.status(500).json(err)
   })
 }
+
+module.exports.putTraining = (req, res, next) => {
+  const { Training } = req.app.get('models');
+  Training.update({
+    name: req.body.name,
+    start_date: req.body.startDate,
+    end_date: req.body.endDate,
+    max_attendees: req.body.maxAttendees
+  }, {where:{id: req.params.id}}).then(function(training){
+    res.status(200).send();
+  })
+  .catch( (err) => {
+    next(err); //Ship this nastyness off to our error handler at the bottom of the middleware stack in app.js
+  });
+};
 
 module.exports.renderTrainingCreatePage = (req, res, next) =>{
   res.render('training-create', {});

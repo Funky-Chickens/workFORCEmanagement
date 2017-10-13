@@ -1,8 +1,21 @@
 extends index.pug
 
 block content 
-    p Class Id: #{oneT.id}<br>Class Name: #{oneT.name}<br>Start Date: #{oneT.start_date}<br>End Date: #{oneT.end_date}<br>Max Attendees: #{oneT.max_attendees}
-   
-    form(method='POST' action=`/training/${oneT.id}?_method=DELETE`)
-        if oneT.end_date > currentDate 
-                button(type="submit") Delete
+        p Class Id: #{oneT.id}<br>Class Name: #{oneT.name}<br>Start Date: #{oneT.start_date}<br>End Date: #{oneT.end_date}<br>Max Attendees: #{oneT.max_attendees}
+        ul Attendees:
+                each employee in Employees
+                        li #{employee.dataValues.first_name} #{employee.dataValues.last_name} 
+    
+        if oneT.end_date > currentDate
+                button(type='button' class='btn' id="btn") Edit Program 
+                div( class='hidden empForm' id="formBtn" action='')
+                        p(id='trainID' class='hidden') #{oneT.id}
+                        input(type='input' class='' id="name" value=oneT.name)
+                        input(type='input' class='' id="startDate" value=oneT.start_date)
+                        input(type='input' class='' id="endDate" value=oneT.end_date)
+                        input(type='input' class='' id="maxAttendees" value=oneT.max_attendees)
+                        button( id="btn3") Submit 
+                div(id='statusIndicator')
+                
+                form(method='POST' action=`/training/${oneT.id}?_method=DELETE`) 
+                        button(type="submit") Delete
