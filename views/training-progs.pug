@@ -4,4 +4,5 @@ block content
   ul
         each program in progs
           - url = `/training/${program.id}`;
-            li: a(href=url) Class Id: #{program.id}<br>Class Name: #{program.name}<br>Start Date: #{program.start_date}<br>End Date: #{program.end_date}<br>Max Attendees: #{program.max_attendees}
+            li(class='lists'): a(href=url) Class Id: #{program.id}<br>Class Name: #{program.name}<br>Start Date: #{program.start_date}<br>End Date: #{program.end_date}<br>Max Attendees: #{program.max_attendees}
+

@@ -4,5 +4,4 @@ block content
     ul
         each employee in emps
             - url = `/employees/${employee.id}`;
-            li: a(href=url) Name: #{employee.first_name} #{employee.last_name}<br>Department: #{employee.Department.name}<br> Employee Id: #{employee.id}
-
+            li(class="lists"): a(href=url) Name: #{employee.first_name} #{employee.last_name}<br>Department: #{employee.Department.name}<br> Employee Id: #{employee.id}
