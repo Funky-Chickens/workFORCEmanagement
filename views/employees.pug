@@ -1,6 +1,9 @@
 extends index.pug
 
 block content
+    -url = '/employees/create';
+     button: a(href=url) Add Employee<br>
+
     ul
         each employee in emps
             - url = `/employees/${employee.id}`;

@@ -58,7 +58,7 @@ module.exports.postTrainingPrograms = (req, res, next) => {
     updatedAt:null
   })
   .then( (result) => {
-     res.status(200).redirect('/training/create');
+     res.status(200).redirect('/training');
   })
   .catch( (err) => {
      res.status(500).json(err)

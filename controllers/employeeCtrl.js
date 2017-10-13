@@ -69,7 +69,7 @@ module.exports.postEmployee = (req, res, next) => {
     updatedAt:null
   })
   .then( (result) => {
-   res.status(200).redirect('/employees/create');
+   res.status(200).redirect('/employees');
   })
   .catch( (err) => {
      res.status(500).json(err)

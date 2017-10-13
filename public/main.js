@@ -75,3 +75,13 @@ $("#formBtn").addClass("hidden");
 alert("PROGRAM INFO SUCCESSFULLY UPDATED, mkay?")
 location.reload();;
 });
+
+$("#submitEmp").click(function(){
+$("#formBtn").addClass("hidden");
+alert("EMPLOYEE SUCCESSFULLY ADDED, mkay?")
+});
+
+$("#submitTrain").click(function(){
+$("#formBtn").addClass("hidden");
+alert("PROGRAM SUCCESSFULLY ADDED, mkay?")
+});
