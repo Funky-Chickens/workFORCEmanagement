@@ -2,7 +2,7 @@ extends index.pug
 
 block content
     ul(id="empData")
-            li Name: #{emp.first_name} #{emp.last_name}<br>Department: #{emp.Department.name}<br> Employee Id: #{emp.id}
+            li(class="lists") Name: #{emp.first_name} #{emp.last_name}<br>Department: #{emp.Department.name}<br> Employee Id: #{emp.id}
             ul
                 each training in Trainings
                         li Attendee of #{training.dataValues.name} 
