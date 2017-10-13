@@ -1,6 +1,9 @@
 extends index.pug
 
 block content
+    -url = '/computers/create';
+    button: a(href=url) Add Computer<br>
+    
     ul
         each computer in comps
             - url = `/computers/${computer.id}`;

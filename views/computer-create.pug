@@ -1,0 +1,15 @@
+extends index.pug
+
+block content
+    h1 Bangazon Workforce Management Computer Input Form
+      form(method='POST', action=`/computers/`)
+        label(for="name") Manufacturer:
+        input(type="text", name="manufacturer", required)
+        br
+        label(for="start_date") Make:
+        input(type="date", name="make", required)
+        br
+        label(for="end_date") Purchase Date:
+        input(type="date", name="purchase_date", required)
+        br
+        button(type="submit" id="submitComp") Submit

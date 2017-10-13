@@ -20,6 +20,7 @@ module.exports.getSingleEmployee = (req, res, next) => {
   const { Employee } = req.app.get('models');
   const { EmployeeComputers } = req.app.get('models');
   const { Computer } = req.app.get('models');
+  const { Training } = req.app.get('models');
   Employee.findAll(
     {
       include: [{

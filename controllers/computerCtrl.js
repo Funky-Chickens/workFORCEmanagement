@@ -14,6 +14,10 @@ module.exports.getComputers = (req, res, next) => {
   });
 };
 
+module.exports.renderCompCreatePage = (req, res, next) =>{
+  res.render('computer-create', {});
+}
+
 module.exports.getOneComputer = (req, res, next) => {
   const { Computer } = req.app.get('models');
   Computer.findById(req.params.id)
@@ -37,3 +41,5 @@ module.exports.deleteComputer = (req, res, next) => {
     res.redirect('/computers');
   })
 }
+
+

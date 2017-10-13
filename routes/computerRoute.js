@@ -3,7 +3,7 @@
 const { Router } = require('express');
 const router = Router();
 
-const { getComputers, postComputer, getOneComputer, deleteComputer } = require('../controllers/computerCtrl');
+const { getComputers, postComputer, getOneComputer, deleteComputer, renderCompCreatePage } = require('../controllers/computerCtrl');
 
 //COMPUTERS
 router.get('/computers', getComputers);
@@ -14,5 +14,7 @@ router.get('/computers', getComputers);
 router.get('/computers/:id', getOneComputer);
 
 router.delete('/computers/:id', deleteComputer);
+
+router.get('/computers/create', renderCompCreatePage);
 
 module.exports = router;
