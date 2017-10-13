@@ -1,9 +1,6 @@
-doctype html
-html
-  head
-    title Bangazon Workforce Management
-  body
-    include navbar.pug
+extends index.pug
+
+block content
     h1 Bangazon Workforce Management Training Input Form
       form(method='POST', action=`/training/`)
         label(for="name") Training Program Name:
@@ -18,4 +15,4 @@ html
         label(for="max_attendees") Maximum Number of Attendees:
         input(type="number", name="max_attendees")
         br
-        button(type="submit") Submit
+        button(type="submit" id="submitTrain") Submit
