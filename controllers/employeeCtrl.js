@@ -51,7 +51,7 @@ module.exports.putEmployee = (req, res, next) => {
     res.status(200).send();
   })
   .catch( (err) => {
-    next(err); //Ship this nastyness off to our error handler at the bottom of the middleware stack in app.js
+    next(err); 
   });
 };
 
