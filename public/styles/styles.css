@@ -29,6 +29,7 @@ a:hover {
     text-align: center;
     background-color: #364457;
     color: #409BD7;
+    font-size: 3rem;
 }
 
 .padBot {
@@ -57,4 +58,12 @@ a:hover {
 .lists:hover{
     background-color: lightgray;
     color: #409BD7;
+}
+
+.bang {
+    max-width: 50%; 
+    position: absolute;
+    left: 33%;
+    margin-left: -100px;
+  
 }
