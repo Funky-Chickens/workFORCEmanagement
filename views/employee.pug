@@ -26,6 +26,4 @@ block content
             each train in Trainings
                 p #{train.dataValues.name}
                 button( (click)=`removeTraining(${emp.id}, ${train.dataValues.id})`) X
-        //- form(method='POST' action=`/employees/${emp.id}?_method=PUT`)
         button(type="submit" id="btn2") Submit     
-                //- div(data-trainingId=`training${train.dataValues.id}`) #{train.dataValues.name}

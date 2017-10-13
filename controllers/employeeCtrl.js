@@ -33,7 +33,7 @@ module.exports.getSingleEmployee = (req, res, next) => {
         emp,
         Trainings: emp.Trainings,
         Computers: emp.Computers,
-        removeTraining: removeAssociationTraining
+        removeTraining: removeAssociationTraining //pass this function to a click event in the PUG
       });
   })
   .catch( (err) => {
@@ -41,12 +41,13 @@ module.exports.getSingleEmployee = (req, res, next) => {
   });
 };
 
+//this function will take in the two IDs from the DOM and then remove the association in the join table(magicmethod)
 let removeAssociationTraining = (employee_id, training_id) => {
   Employee.getById(employee_id)
   .then( (foundEmp) => {
     foundEmp.removeTrainings(training_id)
     .then( (yay) => {
-      res.status(200);
+      res.status(200).redirect(`/employees/${req.params.id}`);
     })
   })
 }
@@ -68,7 +69,7 @@ module.exports.putEmployee = (req, res, next) => {
     dept_id: req.body.deptId
   }, {where:{id: req.params.id}})
   .then(function(employee){
-    res.status(200).redirect(`/employees/${req.params.id}`);
+    res.status(202).redirect(`/employees/${req.params.id}`);
   })
   .catch( (err) => {
     next(err); 
