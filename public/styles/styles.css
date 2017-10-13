@@ -24,6 +24,7 @@ a:hover {
 }
 
 .navTitle {
+    font-family: 'Open Sans', sans-serif;
     text-align: center;
     background-color: #364457;
     color: #409BD7;
@@ -47,7 +48,8 @@ a:hover {
 }
 
 .lists {
-    font-size: 2rem;
+    font-family:" Prata";
+   font-size: 2rem;
    list-style: none;
    padding-bottom: 5px;
    border-bottom: 2px solid black;
@@ -58,10 +60,5 @@ a:hover {
     background-color: lightgray;
     color: #409BD7;
 }
-
-
-
-
-
 
 
