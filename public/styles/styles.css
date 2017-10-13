@@ -13,11 +13,12 @@
 
 body {
     list-style: none;
-
 }
+
 html {
     background-color: #364457;
 }
+
 a:hover {
     color:#409BD7;
     text-decoration: none;
@@ -33,7 +34,6 @@ a:hover {
 .padBot {
     padding-bottom: 5%;
 }
-
 
 .nav-link {
     font-size: 2rem;
@@ -58,5 +58,3 @@ a:hover {
     background-color: lightgray;
     color: #409BD7;
 }
-
-
