@@ -11,41 +11,38 @@ module.exports.getEmployees = (req, res, next) => {
       res.render('employees', {emps});  //in PUG you just take it one dot further (emps.Department.whateverPropertyYouWanted)
   })
   .catch( (err) => {
-    next(err);
+    next(err); 
   });
 };
 
 
 module.exports.getSingleEmployee = (req, res, next) => {
-  const { Employee } = req.app.get('models');
-  const { EmployeeComputers } = req.app.get('models');
-  const { Computer } = req.app.get('models');
-  const { Training } = req.app.get('models');
-  Employee.findAll(
-    {
-      include: [{
-        all: true
+  const { Employee } = req.app.get('models');  
+  Employee.findAll(  //switched to findAll because it was the only kind of operator I could find in the docs to run a function to get stuff from a join table
+    { 
+      include: [{ 
+        all: true //you can also include individual tables, but because of the join table in between, this include all will allow us to have access to an object with every related property
       }],
       where: {
-        id: req.params.id
+        id: req.params.id //this where statement takes the place of the effect of "getById"
       }
-  })
+  }) 
   .then( (employee) => {
       let emp = employee[0].dataValues;
       res.render('employee', {
         emp,
-        Trainings: emp.Trainings,
+        Trainings: emp.Trainings, //Trainings is a property of this object - nested, same for Copmuters
         Computers: emp.Computers
       });
   })
   .catch( (err) => {
-    next(err); //Ship this nastyness off to our error handler at the bottom of the middleware stack in app.js
+    next(err); 
   });
 };
 
 
 module.exports.putEmployee = (req, res, next) => {
-  const { Employee } = req.app.get('models');
+  const { Employee } = req.app.get('models');  
   Employee.update({
     first_name: req.body.firstName,
     last_name: req.body.lastName,
@@ -54,7 +51,7 @@ module.exports.putEmployee = (req, res, next) => {
     res.status(200).send();
   })
   .catch( (err) => {
-    next(err); //Ship this nastyness off to our error handler at the bottom of the middleware stack in app.js
+    next(err); 
   });
 };
 
@@ -70,37 +67,24 @@ module.exports.postEmployee = (req, res, next) => {
     updatedAt:null
   })
   .then( (result) => {
-   res.status(200).redirect('/employees');
+    res.status(200).redirect('/employees');
   })
   .catch( (err) => {
      res.status(500).json(err)
   })
 }
 
-module.exports.getSingleEmployee = (req, res, next) => {
-  const { Employee } = req.app.get('models');
-  Employee.findById(req.params.id) // love those built-in Sequelize methods
-    .then( (employee) => {
-      let emp = employee.dataValues;
-      res.render('employee', {emp});
-  })
-  .catch( (err) => {
-    next(err); //Ship this nastyness off to our error handler at the bottom of the middleware stack in app.js
-  });
-};
 
 module.exports.renderCreateEmpPage = (req, res, next) =>{
-  const { Department } = req.app.get('models');//require in department model
-  Department.findAll()  //find all departments
-  .then( (departments) => {
-    let depts = departments.map( (dept) => {//map over departments and return the data values
-      return dept.dataValues;
+    const { Department } = req.app.get('models');//require in department model
+    Department.findAll()  //find all departments
+    .then( (departments) => {
+      let depts = departments.map( (dept) => {//map over departments and return the data values
+        return dept.dataValues;
+      });
+      res.render('employees-create', {depts});//render the employees create page with dropdown populated dynamically
+    })
+    .catch( (err) => {
+      next(err);
     });
-    res.render('employees-create', {depts});//render the employees create page with dropdown populated dynamically
-  })
-  .catch( (err) => {
-    next(err);
-  });
-};
-
-
+  };
