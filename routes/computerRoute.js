@@ -8,13 +8,13 @@ const { getComputers, postComputer, getOneComputer, deleteComputer, renderCompCr
 //COMPUTERS
 router.get('/computers', getComputers);
 
-// router.post('/computers', postComputer);
+router.post('/computers', postComputer);
+
+router.get('/computers/create', renderCompCreatePage);
 
 // //SINGLE COMPUTER
 router.get('/computers/:id', getOneComputer);
 
 router.delete('/computers/:id', deleteComputer);
-
-router.get('/computers/create', renderCompCreatePage);
 
 module.exports = router;
