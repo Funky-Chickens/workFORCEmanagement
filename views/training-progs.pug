@@ -1,6 +1,9 @@
 extends index.pug
 
 block content
+  -url = '/training/create';
+  button: a(href=url) Add Program<br>
+
   ul
         each program in progs
           - url = `/training/${program.id}`;
