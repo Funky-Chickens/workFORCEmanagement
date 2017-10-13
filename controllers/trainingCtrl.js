@@ -27,11 +27,22 @@ module.exports.deleteTraining = (req, res, next) => {
 }
 
 module.exports.getSingleTrainingProgram = (req, res, next)=>{
+  const { Employee } = req.app.get('models');
+  const { EmployeeTrainings } = req.app.get('models');
   const { Training } = req.app.get('models');
-  Training.findById(req.params.id)
+  Training.findAll(
+    {
+      include: [{
+        all: true
+      }],
+      where: {
+        id: req.params.id
+      }
+  })
   .then( (oneTraining) =>{
-    let oneT = oneTraining.dataValues;
-    res.render('training-prog', {oneT});
+    let oneT = oneTraining[0].dataValues;
+    res.render('training-prog', {oneT,
+      Employees: oneT.Employees});
   })
   .catch( (err) => {
     next(err);
