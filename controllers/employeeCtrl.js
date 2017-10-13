@@ -1,5 +1,7 @@
 'use strict';
 
+// CHRIS WAS HERE BIATCH
+
 module.exports.getEmployees = (req, res, next) => {
   const { Employee } = req.app.get('models');
   const { Department } = req.app.get('models'); //require this in order to include it below
