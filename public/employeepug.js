@@ -6,8 +6,6 @@
 $(".xbuttons").click(function(event){
     let emp_id = this.name;
     let train_id = this.value;
-    console.log("empid?", emp_id);
-    console.log("trainid?", train_id);
     $.ajax({
         type: "DELETE",
         url: `/employee_training/${emp_id}/${train_id}`
