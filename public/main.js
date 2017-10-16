@@ -22,7 +22,7 @@ $(".btn").click(function(){
     $("#btn").addClass("hidden");
   });
   
-
+//this jQuery was used for editing an employee -- we might need to keep it in case of switching back to AJAX calls
 // $("#btn2").click(function(){
 //   let firstName =$('#firstName').val();
 //   let lastName =$('#lastName').val();
