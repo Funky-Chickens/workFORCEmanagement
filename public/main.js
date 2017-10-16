@@ -46,7 +46,6 @@ $(".btn").click(function(){
 $("#btn2").click(function(){
   $("#formBtn").addClass("hidden");
   alert("EMPLOYEE INFO SUCCESSFULLY UPDATED, mkay?")
-  location.reload();;
 });
 
 
@@ -72,7 +71,6 @@ $("#btn3").click(function(){
 $("#btn3").click(function(){
 $("#formBtn").addClass("hidden");
 alert("PROGRAM INFO SUCCESSFULLY UPDATED, mkay?")
-location.reload();;
 });
 
 $("#submitEmp").click(function(){

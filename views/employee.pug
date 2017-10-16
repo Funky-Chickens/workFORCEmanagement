@@ -23,9 +23,10 @@ block content
         label(for="deptId") Department ID
         input(type='number' name='deptId' class='' id="deptId" value=emp.dept_id)
         div Training Programs
-            each train in Trainings
+            for train in Trainings
                 p #{train.name}
-                button( (click)=`removeTraining(${emp.id}, ${train.id})`) X 
+                button(class="xbuttons", name=`${emp.id}`, value=`${train.id}`) X
+                //- Get these with jQuery by class, but use the name and value attributes to collect their data on the other side
         div
             label(for="training-id") Add Training for Employee:
             select(name="training-id")
@@ -33,3 +34,8 @@ block content
                     for opt in PossibleTrainings
                         option(value=`${opt.id}`) #{opt.name}
             button(type="submit" id="btn2") Submit     
+
+    script 
+        include ../node_modules/jquery/dist/jquery.js
+        include ../public/employeepug.js
+        //- Include separate file here to make sure it loads AFTER the pug loads

@@ -1,21 +1,8 @@
 'use strict';
 
-module.exports.getEmployees = (req, res, next) => {
-  const { Employee } = req.app.get('models');
-  const { Department } = req.app.get('models'); //require this in order to include it below
-  Employee.findAll({include: [Department]}) //include Department and it becomes a property on the incoming GET
-    .then( (employees) => {
-      let emps = employees.map( (emps) => {
-        return emps.dataValues;
-      });
-      res.render('employees', {emps});  //in PUG you just take it one dot further (emps.Department.whateverPropertyYouWanted)
-  })
-  .catch( (err) => {
-    next(err); 
-  });
-};
-
-
+module.exports.stuff = () => {
+  console.log("CLIQEEES2");
+}
 module.exports.getSingleEmployee = (req, res, next) => {
   let possibles = [];
   const { Employee, Training } = req.app.get('models');  
@@ -25,40 +12,68 @@ module.exports.getSingleEmployee = (req, res, next) => {
       return training.dataValues;
     })
   });
-  Employee.findAll(  //switched to findAll because it was the only kind of operator I could find in the docs to run a function to get stuff from a join table
-    { 
-      include: [{ 
-        all: true //you can also include individual tables, but because of the join table in between, this include all will allow us to have access to an object with every related property
-      }],
-      where: {
-        id: req.params.id //this where statement takes the place of the effect of "getById"
-      }
-  }) 
-  .then( (employee) => {
+  console.log("REQPARAMS id", req.params.id);
+  console.log("TYPE of REQPARAMS id", typeof req.params.id);
+  if (req.params.id !== 'popper.js.map') {
+    Employee.findAll(  //switched to findAll because it was the only kind of operator I could find in the docs to run a function to get stuff from a join table
+      { 
+        include: [{ 
+          all: true //you can also include individual tables, but because of the join table in between, this include all will allow us to have access to an object with every related property
+        }],
+        where: {
+          id: req.params.id //this where statement takes the place of the effect of "getById"
+        }
+    }) 
+    .then( (employee) => {
       let emp = employee[0].dataValues;
       res.render('employee', {
         emp,
         PossibleTrainings: possibles,
         Computers: emp.Computers,
-        removeTraining: removeAssociationTraining //pass this function to a click event in the PUG
-        Trainings: emp.Trainings //Trainings is a property of this object - nested, same for Copmuters
+        Trainings: emp.Trainings //Trainings is a property of this object - nested, same for Computers
       });
-  })
-  .catch( (err) => {
-    next(err); 
-  });
+    })
+    .catch( (err) => {
+      next(err); 
+    });
+  } else {
+    console.log("Error!", req.params.id);
+  }
 };
 
-//this function will take in the two IDs from the DOM and then remove the association in the join table(magicmethod)
-let removeAssociationTraining = (employee_id, training_id) => {
-  Employee.getById(employee_id)
+
+module.exports.getEmployees = (req, res, next) => {
+  const { Employee } = req.app.get('models');
+    const { Department } = req.app.get('models'); //require this in order to include it below
+    Employee.findAll({include: [Department]}) //include Department and it becomes a property on the incoming GET
+    .then( (employees) => {
+        let emps = employees.map( (emps) => {
+          return emps.dataValues;
+        });
+        res.render('employees', {emps});  //in PUG you just take it one dot further (emps.Department.whateverPropertyYouWanted)
+      })
+      .catch( (err) => {
+        next(err); 
+      });
+    };
+    
+    //this function will take in the two IDs from the route params and then remove the association in the join table(magicmethod)
+module.exports.removeAssociationTraining = (req, res, next) => {
+  const { Employee, Training } = req.app.get('models');  
+  Employee.findById(parseInt(req.params.emp_id))
   .then( (foundEmp) => {
-    foundEmp.removeTrainings(training_id)
+    foundEmp.removeTrainings(req.params.train_id)
     .then( (yay) => {
       res.status(200).redirect(`/employees/${req.params.id}`);
     })
+    .catch( (err) => {
+      res.status(500).json(err);
+    });
   })
-}
+  .catch( (error)=>{
+    res.status(500).json(err);
+  });
+};
 
 
 module.exports.putEmployee = (req, res, next) => {
