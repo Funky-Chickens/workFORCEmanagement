@@ -1,8 +1,9 @@
 'use strict'
 
+//get all training programs -gm
 module.exports.getTrainings = (req, res, next) => {
   const { Training } = req.app.get('models');
-  Training.findAll() // love those built-in Sequelize methods
+  Training.findAll()
   .then( (trainings) => {
     let progs = trainings.map( (prog) => {
       return prog.dataValues;
@@ -14,6 +15,7 @@ module.exports.getTrainings = (req, res, next) => {
   });
 };
 
+//removes a training program -cr
 module.exports.deleteTraining = (req, res, next) => {
   const { Training } = req.app.get('models');
   Training.destroy({
@@ -26,10 +28,10 @@ module.exports.deleteTraining = (req, res, next) => {
   })
 }
 
+// gets one training program by ID
 module.exports.getSingleTrainingProgram = (req, res, next)=>{
   const { Training } = req.app.get('models');
-  Training.findAll(
-    {
+  Training.findAll({
       include: [{
         all: true
       }],
@@ -47,6 +49,7 @@ module.exports.getSingleTrainingProgram = (req, res, next)=>{
   });
 };
 
+//creates a new training program
 module.exports.postTrainingPrograms = (req, res, next) => {
   const { Training } = req.app.get('models');
   Training.create({
@@ -65,6 +68,7 @@ module.exports.postTrainingPrograms = (req, res, next) => {
   })
 }
 
+//updates a training program
 module.exports.putTraining = (req, res, next) => {
   const { Training } = req.app.get('models');
   Training.update({
@@ -76,10 +80,11 @@ module.exports.putTraining = (req, res, next) => {
     res.status(200).send();
   })
   .catch( (err) => {
-    next(err); //Ship this nastyness off to our error handler at the bottom of the middleware stack in app.js
+    next(err);
   });
 };
 
+//renders the training create page with a form
 module.exports.renderTrainingCreatePage = (req, res, next) =>{
   res.render('training-create', {});
 }

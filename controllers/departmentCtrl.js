@@ -1,5 +1,6 @@
 'use strict';
 
+//gets a list of departments
 module.exports.getDepartments = (req, res, next) => {
   const { Department } = req.app.get('models');
   let depts;
@@ -15,6 +16,7 @@ module.exports.getDepartments = (req, res, next) => {
   });
 };
 
+//gets a department by ID, its supervisor, and its employees
 module.exports.getSingleDepartment = (req, res, next) => {
   const { Department, Employee } = req.app.get('models');
   let dept, supervisor, underlings; 

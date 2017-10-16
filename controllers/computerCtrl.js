@@ -1,5 +1,6 @@
 'use strict';
 
+//gets all computers
 module.exports.getComputers = (req, res, next) => {
   const { Computer } = req.app.get('models');
   Computer.findAll() 
@@ -14,6 +15,7 @@ module.exports.getComputers = (req, res, next) => {
   });
 };
 
+//gets a single computer by ID
 module.exports.getOneComputer = (req, res, next) => {
   const { Computer } = req.app.get('models');
   Computer.findById(req.params.id)
@@ -26,6 +28,7 @@ module.exports.getOneComputer = (req, res, next) => {
   });
 };
 
+//removes a computer
 module.exports.deleteComputer = (req, res, next) => {
   const { Computer } = req.app.get('models');
   Computer.destroy({
