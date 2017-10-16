@@ -1,14 +1,17 @@
 'use strict';
 
 module.exports.getEmployees = (req, res, next) => {
-  const { Employee } = req.app.get('models');
-  const { Department } = req.app.get('models'); //require this in order to include it below
+  const { Employee, Department } = req.app.get('models');
+  let orderedEmps = [];
   Employee.findAll({include: [Department]}) //include Department and it becomes a property on the incoming GET
     .then( (employees) => {
       let emps = employees.map( (emps) => {
         return emps.dataValues;
-      });
-      res.render('employees', {emps});  //in PUG you just take it one dot further (emps.Department.whateverPropertyYouWanted)
+      })
+      orderedEmps = emps.sort(function(a, b) {
+        return parseFloat(a.id) - parseFloat(b.id);
+    });
+      res.render('employees', {orderedEmps});  //in PUG you just take it one dot further (emps.Department.whateverPropertyYouWanted)
   })
   .catch( (err) => {
     next(err); 

@@ -2,7 +2,6 @@
 
 module.exports.getDepartments = (req, res, next) => {
   const { Department } = req.app.get('models');
-  const { Employee } = req.app.get('models');  
   let depts;
   Department.findAll()
   .then( (departments) => {
@@ -17,29 +16,22 @@ module.exports.getDepartments = (req, res, next) => {
 };
 
 module.exports.getSingleDepartment = (req, res, next) => {
-  const { Department } = req.app.get('models');
-  const { Employee } = req.app.get('models');
+  const { Department, Employee } = req.app.get('models');
   let dept, supervisor, underlings; 
-  Department.findAll({
-      where: {
-        id: req.params.id //this where statement takes the place of the effect of "getById"
-      }
-  }) 
+  Department.findById(req.params.id)
   .then( (department) => {
-      dept = department[0].dataValues;
+      dept = department.dataValues;
       return Employee.findById(dept.supervisor_id)
-  .then( (employee) => {
+  .then( (employee) => { //uses the supervisor id from the department and finds employee with associated ID -jmr
       supervisor = employee.dataValues
-      return Employee.findAll({
-        where: {
-          dept_id: req.params.id
-        }
+      return Employee.findAll({ //gets all employees from the department -jmr
+        where: { dept_id: req.params.id }
       })
   .then( (employees) => {
       underlings = employees.map( (employee) => {
         return employee.dataValues
       })
-      .filter( (employee) => {
+      .filter( (employee) => { //removes the supervisor from the employee list to be displayed -jmr
         if(employee.id !== dept.supervisor_id) {
           return employee;
         }
@@ -49,7 +41,7 @@ module.exports.getSingleDepartment = (req, res, next) => {
         supervisor,
         underlings
       });
-  })
+    });
     });
   })
   .catch( (err) => {
