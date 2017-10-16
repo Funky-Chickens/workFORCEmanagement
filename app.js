@@ -32,9 +32,6 @@ app.locals.currentDate = d2.slice(0, -14);
 
 let routes = require('./routes/');
 
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
-
 // Begin middleware stack
 app.use(routes);
 

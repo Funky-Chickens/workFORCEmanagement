@@ -15,13 +15,28 @@ module.exports.getComputers = (req, res, next) => {
   });
 };
 
+
+
+module.exports.renderCompCreatePage = (req, res, next) =>{
+  res.render('computer-create', {});
+}
+
 //gets a single computer by ID
 module.exports.getOneComputer = (req, res, next) => {
   const { Computer } = req.app.get('models');
-  Computer.findById(req.params.id)
+  Computer.findAll(
+    {
+      include: [{
+        all: true
+      }],
+      where: {
+        id: req.params.id
+      }
+    })
   .then( (computer) => {
-    let comp = computer.dataValues
-    res.render('computer', {comp});
+    let comp = computer[0].dataValues
+    res.render('computer', {comp,
+      Employees: comp.Employees});
   })
   .catch( (err) => {
     res.status(500).json({"error": err})
@@ -40,3 +55,20 @@ module.exports.deleteComputer = (req, res, next) => {
     res.redirect('/computers');
   })
 }
+
+module.exports.postComputer = (req, res, next) => {
+  const { Computer } = req.app.get('models');
+  Computer.create({
+    manufacturer:req.body.manufacturer,
+    make:req.body.make,
+    purchase_date: req.body.purchase_date
+  })
+  .then( (result) => {
+    res.status(200).redirect('/computers');
+  })
+  .catch( (err) => {
+     res.status(500).json(err)
+  })
+}
+
+

@@ -3,12 +3,14 @@
 const { Router } = require('express');
 const router = Router();
 
-const { getComputers, postComputer, getOneComputer, deleteComputer } = require('../controllers/computerCtrl');
+const { getComputers, postComputer, getOneComputer, deleteComputer, renderCompCreatePage } = require('../controllers/computerCtrl');
 
 //COMPUTERS
 router.get('/computers', getComputers);
 
-// router.post('/computers', postComputer);
+router.post('/computers', postComputer);
+
+router.get('/computers/create', renderCompCreatePage);
 
 // //SINGLE COMPUTER
 router.get('/computers/:id', getOneComputer);
