@@ -9,8 +9,6 @@ module.exports.getSingleEmployee = (req, res, next) => {
       return training.dataValues;
     })
   });
-  console.log("REQPARAMS id", req.params.id);
-  console.log("TYPE of REQPARAMS id", typeof req.params.id);
   if (req.params.id !== 'popper.js.map') {
     Employee.findAll(  //switched to findAll because it was the only kind of operator I could find in the docs to run a function to get stuff from a join table
       { 
@@ -75,7 +73,6 @@ module.exports.removeAssociationTraining = (req, res, next) => {
 
 module.exports.putEmployee = (req, res, next) => {
   let body = req.body;
-  console.log("reqbody", body['training-id']);
   const { Employee } = req.app.get('models');  
   Employee.findById(req.params.id)
   .then( (foundEmp) => {
