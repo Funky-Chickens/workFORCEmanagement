@@ -1,8 +1,12 @@
-doctype html
-html
-  head
-    title Bangazon Workforce Managament
-  body
-    include navbar.pug
-    h1 Bangazon Workforce Managament
-    h2 Here we shall have details about a department including its employees.
+extends index.pug
+
+block content
+  ul(id="empData")
+            li(class="lists") #{dept.name}
+            li ID: #{dept.id}
+            li Budget: #{dept.budget}
+            li Supervisor: #{supervisor.first_name} #{supervisor.last_name}
+            li Employees:
+              ul
+                each emp in underlings
+                  li #{emp.first_name} #{emp.last_name}
