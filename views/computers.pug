@@ -1,7 +1,10 @@
 extends index.pug
 
 block content
+    -url = '/computers/create';
+    button: a(href=url) Add Computer<br>
+    
     ul
         each computer in comps
             - url = `/computers/${computer.id}`;
-            li(class='lists'): a(href=url) Computer Id: #{computer.id}<br>Manufacturer: #{computer.manufacturer}<br>Make: #{computer.make}<br>Purchase Date: #{computer.purchase_date}
+                li(class='lists'): a(href=url) Computer Id: #{computer.id}<br>Manufacturer: #{computer.manufacturer}<br>Make: #{computer.make}<br>Purchase Date: #{computer.purchase_date}
