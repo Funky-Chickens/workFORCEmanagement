@@ -15,7 +15,6 @@ module.exports.getEmployees = (req, res, next) => {
   });
 };
 
-
 module.exports.getSingleEmployee = (req, res, next) => {
   const { Employee } = req.app.get('models');  
   Employee.findAll(  //switched to findAll because it was the only kind of operator I could find in the docs to run a function to get stuff from a join table
