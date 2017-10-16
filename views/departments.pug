@@ -4,4 +4,4 @@ block content
     ul
         each department in depts
             - url = `/departments/${department.id}`;
-            li(class="lists"): a(href=url) Name: #{department.name}<br>Budget: #{department.budget}<br> Supervisor Id: #{department.supervisor_id}
+            li(class="lists"): a(href=url) #{department.id} | #{department.name}

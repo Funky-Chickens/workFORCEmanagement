@@ -4,5 +4,9 @@ block content
   ul(id="empData")
             li(class="lists") #{dept.name}
             li ID: #{dept.id}
-            li Supervisor: #{supervisor.first_name} #{supervisor.last_name}
             li Budget: #{dept.budget}
+            li Supervisor: #{supervisor.first_name} #{supervisor.last_name}
+            li Employees:
+              ul
+                each emp in underlings
+                  li #{emp.first_name} #{emp.last_name}

@@ -2,11 +2,13 @@
 
 module.exports.getDepartments = (req, res, next) => {
   const { Department } = req.app.get('models');
+  const { Employee } = req.app.get('models');  
+  let depts;
   Department.findAll()
   .then( (departments) => {
-    let depts = departments.map( (dept) => {
+    depts = departments.map( (dept) => {
       return dept.dataValues;
-    });
+    })
     res.render('departments', {depts});
   })
   .catch( (err) => {
@@ -17,12 +19,8 @@ module.exports.getDepartments = (req, res, next) => {
 module.exports.getSingleDepartment = (req, res, next) => {
   const { Department } = req.app.get('models');
   const { Employee } = req.app.get('models');
-  let dept, supervisor; 
-  Department.findAll(  //switched to findAll because it was the only kind of operator I could find in the docs to run a function to get stuff from a join table
-    { 
-      include: [{ 
-        all: true //you can also include individual tables, but because of the join table in between, this include all will allow us to have access to an object with every related property
-      }],
+  let dept, supervisor, underlings; 
+  Department.findAll({
       where: {
         id: req.params.id //this where statement takes the place of the effect of "getById"
       }
@@ -32,12 +30,26 @@ module.exports.getSingleDepartment = (req, res, next) => {
       return Employee.findById(dept.supervisor_id)
   .then( (employee) => {
       supervisor = employee.dataValues
-      console.log("department", dept)
-      console.log("supervisor", supervisor)
+      return Employee.findAll({
+        where: {
+          dept_id: req.params.id
+        }
+      })
+  .then( (employees) => {
+      underlings = employees.map( (employee) => {
+        return employee.dataValues
+      })
+      .filter( (employee) => {
+        if(employee.id !== dept.supervisor_id) {
+          return employee;
+        }
+      })
       res.render('department', {
         dept,
-        supervisor
+        supervisor,
+        underlings
       });
+  })
     });
   })
   .catch( (err) => {
