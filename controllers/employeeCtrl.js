@@ -1,8 +1,5 @@
 'use strict';
 
-module.exports.stuff = () => {
-  console.log("CLIQEEES2");
-}
 module.exports.getSingleEmployee = (req, res, next) => {
   let possibles = [];
   const { Employee, Training } = req.app.get('models');  
