@@ -3,12 +3,8 @@
    let lastName =$('#lastName').val();
    let deptId =$('#deptId').val();
    let empId = $('#empID').text();
+   let trainingId = $('#trainingId').text();
 
-   let name =$('#name').val();
-   let startDate =$('#startDate').val();
-   let endDate =$('#endDate').val();
-   let maxAttendees =$('#maxAttendees').val();
-   let trainId = $('#trainID').text()
    console.log(empId);
 
 $(".btn").click(function(){
@@ -24,31 +20,34 @@ $(".btn").click(function(){
   });
   
 
-$("#btn2").click(function(){
-  let firstName =$('#firstName').val();
-  let lastName =$('#lastName').val();
-  let deptId =$('#deptId').val();
+// $("#btn2").click(function(){
+//   let firstName =$('#firstName').val();
+//   let lastName =$('#lastName').val();
+//   let deptId =$('#deptId').val();
 
-    let employeeObj = {
-      firstName, 
-      lastName, 
-      deptId};
-    console.log(employeeObj);
-      console.log(empId);
-    $.ajax({
-        type: "PUT",
-        url: `http://localhost:4000/employees/${empId}`, 
-        data: employeeObj
-      })
-      .then( (data) => {
-      });
-});
+//     let employeeObj = {
+//       firstName, 
+//       lastName, 
+//       deptId};
+//     console.log(employeeObj);
+//       console.log(empId);
+//     $.ajax({
+//         type: "PUT",
+//         url: `http://localhost:4000/employees/${empId}`, 
+//         data: employeeObj
+//       })
+//       .then( (data) => {
+//       });
+// });
 
 $("#btn2").click(function(){
   $("#formBtn").addClass("hidden");
   alert("EMPLOYEE INFO SUCCESSFULLY UPDATED, mkay?")
   location.reload();;
 });
+
+
+$("#train")
 
 
 $("#btn3").click(function(){
@@ -85,3 +84,4 @@ $("#submitTrain").click(function(){
 $("#formBtn").addClass("hidden");
 alert("PROGRAM SUCCESSFULLY ADDED, mkay?")
 });
+

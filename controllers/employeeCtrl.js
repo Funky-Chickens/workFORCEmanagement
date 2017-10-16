@@ -17,7 +17,16 @@ module.exports.getEmployees = (req, res, next) => {
 
 
 module.exports.getSingleEmployee = (req, res, next) => {
+  let possibles = [];
   const { Employee } = req.app.get('models');  
+  const { Training } = req.app.get('models');
+  Training.findAll()
+  .then( (trainings) => {
+    possibles = trainings.map( (training) => {
+      return training.dataValues;
+    })
+    console.log("possibles", possibles);
+  });
   Employee.findAll(  //switched to findAll because it was the only kind of operator I could find in the docs to run a function to get stuff from a join table
     { 
       include: [{ 
@@ -31,8 +40,10 @@ module.exports.getSingleEmployee = (req, res, next) => {
       let emp = employee[0].dataValues;
       res.render('employee', {
         emp,
-        Trainings: emp.Trainings, //Trainings is a property of this object - nested, same for Copmuters
-        Computers: emp.Computers
+        Trainings: emp.Trainings,
+        PossibleTrainings: possibles,
+        Computers: emp.Computers,
+        removeTraining: removeAssociationTraining //pass this function to a click event in the PUG
       });
   })
   .catch( (err) => {
@@ -40,15 +51,36 @@ module.exports.getSingleEmployee = (req, res, next) => {
   });
 };
 
+//this function will take in the two IDs from the DOM and then remove the association in the join table(magicmethod)
+let removeAssociationTraining = (employee_id, training_id) => {
+  Employee.getById(employee_id)
+  .then( (foundEmp) => {
+    foundEmp.removeTrainings(training_id)
+    .then( (yay) => {
+      res.status(200).redirect(`/employees/${req.params.id}`);
+    })
+  })
+}
+
 
 module.exports.putEmployee = (req, res, next) => {
+  let body = req.body;
+  console.log("reqbody", body['training-id']);
   const { Employee } = req.app.get('models');  
+  Employee.findById(req.params.id)
+  .then( (foundEmp) => {
+    foundEmp.addTraining(body['training-id'])// pass in the value of the selected drop down item
+    .then( (yay) => {
+      res.status(200);
+  })
+})
   Employee.update({
     first_name: req.body.firstName,
     last_name: req.body.lastName,
     dept_id: req.body.deptId
-  }, {where:{id: req.params.id}}).then(function(employee){
-    res.status(200).send();
+  }, {where:{id: req.params.id}})
+  .then(function(employee){
+    res.status(202).redirect(`/employees/${req.params.id}`);
   })
   .catch( (err) => {
     next(err); 

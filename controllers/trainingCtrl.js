@@ -2,7 +2,7 @@
 
 module.exports.getTrainings = (req, res, next) => {
   const { Training } = req.app.get('models');
-  Training.findAll() // love those built-in Sequelize methods
+  Training.findAll() 
   .then( (trainings) => {
     let progs = trainings.map( (prog) => {
       return prog.dataValues;
