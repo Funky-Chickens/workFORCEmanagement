@@ -18,36 +18,34 @@ module.exports.getEmployees = (req, res, next) => {
 
 module.exports.getSingleEmployee = (req, res, next) => {
   let possibles = [];
-  const { Employee } = req.app.get('models');  
-  const { Training } = req.app.get('models');
+  const { Employee, Training } = req.app.get('models');  
   Training.findAll()
   .then( (trainings) => {
     possibles = trainings.map( (training) => {
       return training.dataValues;
     })
-    console.log("possibles", possibles);
   });
-  Employee.findAll(
+  Employee.findAll(  //switched to findAll because it was the only kind of operator I could find in the docs to run a function to get stuff from a join table
     { 
       include: [{ 
-        all: true 
+        all: true //you can also include individual tables, but because of the join table in between, this include all will allow us to have access to an object with every related property
       }],
       where: {
-        id: req.params.id
+        id: req.params.id //this where statement takes the place of the effect of "getById"
       }
   }) 
   .then( (employee) => {
       let emp = employee[0].dataValues;
       res.render('employee', {
         emp,
-        Trainings: emp.Trainings,
         PossibleTrainings: possibles,
         Computers: emp.Computers,
         removeTraining: removeAssociationTraining //pass this function to a click event in the PUG
+        Trainings: emp.Trainings //Trainings is a property of this object - nested, same for Copmuters
       });
   })
   .catch( (err) => {
-    next(err); //Ship this nastyness off to our error handler at the bottom of the middleware stack in app.js
+    next(err); 
   });
 };
 
@@ -99,7 +97,7 @@ module.exports.postEmployee = (req, res, next) => {
     updatedAt:null
   })
   .then( (result) => {
-     res.status(200).json(result)
+    res.status(200).redirect('/employees');
   })
   .catch( (err) => {
      res.status(500).json(err)
