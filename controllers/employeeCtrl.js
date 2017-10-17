@@ -99,12 +99,10 @@ module.exports.putEmployee = (req, res, next) => {
     }, {where:{id: empId}})
   })
   .then( (emp) => {
-    console.log("comp id?", body.compId);
     //get all employees'computer information, check it against entered number- if it's already assigned to an employee, do an alert & don't change, else
     return Computer.findById(body.compId)
   })
   .then((foundComp) => {
-    console.log("FOUND comp?", foundComp)
     if(foundComp){
       return foundComp.getEmployees()
       .then( (employees) => {
