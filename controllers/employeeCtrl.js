@@ -116,9 +116,6 @@ module.exports.putEmployee = (req, res, next) => {
         .then( (data)=>{
           console.log("never break the chain...", data);
         })
-        // .then(function(employee){
-        //     //this goes to the second callback in the route, which is getSingleEmployee
-        // })
         .catch( (err) => {
           next(err);
         });
@@ -126,9 +123,6 @@ module.exports.putEmployee = (req, res, next) => {
           console.log("Sorry, that computer doesn't exist");
         }
       })
-      // .then( function(result){
-      //   next();
-      // })
       .catch((err)=>{
         next(err)
       })
