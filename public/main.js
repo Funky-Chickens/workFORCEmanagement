@@ -43,10 +43,11 @@ $(".btn").click(function(){
 //       });
 // });
 
-$("#btn2").click(function(){
-  $("#formBtn").addClass("hidden");
-  alert("EMPLOYEE INFO SUCCESSFULLY UPDATED, mkay?")
-});
+// $("#btn2").click(function(event){
+//   $("#formBtn").addClass("hidden");
+//   event.preventDefault();
+//   alert("EMPLOYEE INFO SUCCESSFULLY UPDATED, mkay?")
+// });
 
 
 $("#btn3").click(function(){
