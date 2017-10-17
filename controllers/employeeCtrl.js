@@ -79,6 +79,8 @@ module.exports.removeAssociationTraining = (req, res, next) => {
   });
 };
 
+
+//updates employee information -jmr
 module.exports.putEmployee = (req, res, next) => {
   let body = req.body;
   const { Employee } = req.app.get('models');  
@@ -101,6 +103,8 @@ module.exports.putEmployee = (req, res, next) => {
   });
 };
 
+
+//adds new employee
 module.exports.postEmployee = (req, res, next) => {
   const { Employee } = req.app.get('models');
   Employee.create({
@@ -119,15 +123,15 @@ module.exports.postEmployee = (req, res, next) => {
   })
 }
 
-
+//pulls up the employee create form -gm
 module.exports.renderCreateEmpPage = (req, res, next) =>{
-    const { Department } = req.app.get('models');//require in department model
-    Department.findAll()  //find all departments
+    const { Department } = req.app.get('models');
+    Department.findAll() //find all departments -gm
     .then( (departments) => {
-      let depts = departments.map( (dept) => {//map over departments and return the data values
+      let depts = departments.map( (dept) => { //map over departments and return the data values -gm
         return dept.dataValues;
       });
-      res.render('employees-create', {depts});//render the employees create page with dropdown populated dynamically
+      res.render('employees-create', {depts}); //render the employees create page with dropdown populated dynamically -gm
     })
     .catch( (err) => {
       next(err);
