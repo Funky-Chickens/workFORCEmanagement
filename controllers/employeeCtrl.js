@@ -34,12 +34,12 @@ module.exports.getSingleEmployee = (req, res, next) => {
       res.render('employee', {
         emp,
         PossibleTrainings: possibles,
-        Computers: emp.Computers,
+        Computers: emp.Computers,//send Computer property to employee.pug for reassigning computers
         Trainings: emp.Trainings //Trainings is a property of this object - nested, same for Computers
       });
     })
     .catch( (err) => {
-      next(err); 
+      next(err);
     });
   } else {
     console.log("Error!", req.params.id);
@@ -85,8 +85,9 @@ module.exports.removeAssociationTraining = (req, res, next) => {
 //updates employee information -jmr
 module.exports.putEmployee = (req, res, next) => {
   let body = req.body;
-  const { Employee } = req.app.get('models');  
-  Employee.findById(req.params.id)
+  let empId = req.params.id;
+  const { Employee } = req.app.get('models');
+  Employee.findById(empId)
   .then( (foundEmp) => {
     return foundEmp.addTraining(body['training-id'])
   })// pass in the value of the selected drop down item
@@ -95,13 +96,19 @@ module.exports.putEmployee = (req, res, next) => {
       first_name: req.body.firstName,
       last_name: req.body.lastName,
       dept_id: req.body.deptId
-    }, {where:{id: req.params.id}})
+    }, {where:{id: empId}})
+  })
+  .then( (employee) =>{
+  return Employee.findById(empId)
+  })
+  .then( (emp) => {
+    return emp.setComputers(body.compId) //set computer on employee to replace if needed
   })
   .then(function(employee){
     next(); //this goes to the second callback in the route, which is getSingleEmployee
   })
   .catch( (err) => {
-    next(err); 
+    next(err);
   });
 };
 
