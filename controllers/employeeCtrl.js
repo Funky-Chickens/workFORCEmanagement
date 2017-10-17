@@ -86,7 +86,7 @@ module.exports.removeAssociationTraining = (req, res, next) => {
 module.exports.putEmployee = (req, res, next) => {
   let body = req.body;
   let empId = req.params.id;
-  const { Employee } = req.app.get('models');
+  const { Employee, Computer } = req.app.get('models');
   Employee.findById(empId)
   .then( (foundEmp) => {
     return foundEmp.addTraining(body['training-id'])
@@ -98,20 +98,49 @@ module.exports.putEmployee = (req, res, next) => {
       dept_id: req.body.deptId
     }, {where:{id: empId}})
   })
-  .then( (employee) =>{
-  return Employee.findById(empId)
-  })
   .then( (emp) => {
-    return emp.setComputers(body.compId) //set computer on employee to replace if needed
+    console.log("comp id?", body.compId);
+    //get all employees'computer information, check it against entered number- if it's already assigned to an employee, do an alert & don't change, else
+    return Computer.findById(body.compId)
   })
-  .then(function(employee){
-    next(); //this goes to the second callback in the route, which is getSingleEmployee
+  .then((foundComp) => {
+    console.log("FOUND comp?", foundComp)
+    if(foundComp){
+      return foundComp.getEmployees()
+      .then( (employees) => {
+        if (!employees[0]){//if there's not person already assigned to that computer, do it
+          return Employee.findById(empId)
+        .then( (emp) =>{
+          return emp.setComputers(body.compId)
+        })
+        .then( (data)=>{
+          console.log("never break the chain...", data);
+        })
+        // .then(function(employee){
+        //     //this goes to the second callback in the route, which is getSingleEmployee
+        // })
+        .catch( (err) => {
+          next(err);
+        });
+        }else{
+          console.log("Sorry, that computer doesn't exist");
+        }
+      })
+      // .then( function(result){
+      //   next();
+      // })
+      .catch((err)=>{
+        next(err)
+      })
+    }
   })
-  .catch( (err) => {
-    next(err);
-  });
-};
-
+  .then(function(){
+    next();
+  })
+  .catch((err)=>{
+    next(err)
+  })
+}
 
 //adds new employee
 module.exports.postEmployee = (req, res, next) => {
