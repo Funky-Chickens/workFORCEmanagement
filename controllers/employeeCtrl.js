@@ -49,17 +49,19 @@ module.exports.getSingleEmployee = (req, res, next) => {
 
 module.exports.getEmployees = (req, res, next) => {
   const { Employee, Department } = req.app.get('models');
-    Employee.findAll({include: [Department]}) //include Department and it becomes a property on the incoming GET
+  Employee.findAll({include: [Department]}) //include Department and it becomes a property on the incoming GET -el
     .then( (employees) => {
-        let emps = employees.map( (emps) => {
-          return emps.dataValues;
-        });
-        res.render('employees', {emps});  //in PUG you just take it one dot further (emps.Department.whateverPropertyYouWanted)
-      })
-      .catch( (err) => {
-        next(err); 
-      });
-    };
+      let emps = employees.map( (emps) => {
+        return emps.dataValues;
+      }).sort(function(a, b) { //orders the employees by their ID -jmr
+        return parseFloat(a.id) - parseFloat(b.id);
+    });
+      res.render('employees', {emps});
+  })
+  .catch( (err) => {
+    next(err); 
+  });
+};
     
     //this function will take in the two IDs from the route params and then remove the association in the join table(magicmethod)
 module.exports.removeAssociationTraining = (req, res, next) => {
