@@ -1,66 +1,110 @@
 'use strict';
 
-//gets a list of employees and their departments -jmr
+module.exports.getSingleEmployee = (req, res, next) => {
+  let possibles = [];
+  const { Employee, Training } = req.app.get('models');  
+  Training.findAll()
+  .then( (trainings) => {
+    possibles = trainings.map( (training) => {
+      return training.dataValues;
+    })
+  });
+  if (req.params.id !== 'popper.js.map') {
+    // Employee.findById(req.params.id)
+    // .then((foundEmp) => {
+    //   foundEmp.getTrainings()
+    //   .then( (trainings) => {
+    //     let employeeProgs = trainings.map( (training) => {
+    //       return training.dataValues
+    //     });
+    //     console.log("trainings", employeeProgs);
+    //   })
+    // })
+    Employee.findAll(  //switched to findAll because it was the only kind of operator I could find in the docs to run a function to get stuff from a join table
+      { 
+        include: [{ 
+          all: true //you can also include individual tables, but because of the join table in between, this include all will allow us to have access to an object with every related property
+        }],
+        where: {
+          id: req.params.id //this where statement takes the place of the effect of "findById"
+        }
+    }) 
+    .then( (employee) => {
+      let emp = employee[0].dataValues;
+      res.render('employee', {
+        emp,
+        PossibleTrainings: possibles,
+        Computers: emp.Computers,
+        Trainings: emp.Trainings //Trainings is a property of this object - nested, same for Computers
+      });
+    })
+    .catch( (err) => {
+      next(err); 
+    });
+  } else {
+    console.log("Error!", req.params.id);
+  }
+};
+
+
 module.exports.getEmployees = (req, res, next) => {
   const { Employee, Department } = req.app.get('models');
-  let orderedEmps = [];
   Employee.findAll({include: [Department]}) //include Department and it becomes a property on the incoming GET -el
     .then( (employees) => {
       let emps = employees.map( (emps) => {
         return emps.dataValues;
-      })
-      orderedEmps = emps.sort(function(a, b) { //orders the employees by their ID -jmr
+      }).sort(function(a, b) { //orders the employees by their ID -jmr
         return parseFloat(a.id) - parseFloat(b.id);
     });
-      res.render('employees', {orderedEmps});
+      res.render('employees', {emps});
   })
   .catch( (err) => {
     next(err); 
+  });
+};
+    
+    //this function will take in the two IDs from the route params and then remove the association in the join table(magicmethod)
+module.exports.removeAssociationTraining = (req, res, next) => {
+  const { Employee, Training } = req.app.get('models');  
+  Employee.findById(parseInt(req.params.emp_id))
+  .then( (foundEmp) => {
+    return foundEmp.removeTrainings(req.params.train_id)
+    .then( (yay) => {
+      res.status(200).redirect(`/employees/${req.params.id}`);
+    })
+    .catch( (err) => {
+      res.status(500).json(err);
+    });
+  })
+  .catch( (error)=>{
+    res.status(500).json(err);
   });
 };
 
-//gets a single employee by their ID
-module.exports.getSingleEmployee = (req, res, next) => {
-  const { Employee } = req.app.get('models');  
-  Employee.findAll({ 
-      include: [{ 
-        all: true //includes all associated tables -el
-      }],
-      where: {
-        id: req.params.id //this where statement takes the place of the effect of "getById" -el
-      }
-  }) 
-  .then( (employee) => {
-      let emp = employee[0].dataValues;
-      res.render('employee', {
-        emp,
-        Trainings: emp.Trainings, //Trainings is a property of this object - nested, same for Copmuters -el
-        Computers: emp.Computers
-      });
-  })
-  .catch( (err) => {
-    next(err); 
-  });
-};
 
 //updates employee information -jmr
 module.exports.putEmployee = (req, res, next) => {
+  let body = req.body;
   const { Employee } = req.app.get('models');  
-  Employee.update({
-    first_name: req.body.firstName,
-    last_name: req.body.lastName,
-    dept_id: req.body.deptId
-  }, { 
-    where: {
-      id: req.params.id
-    }
-  }).then(function(employee){
-    res.status(201).send();
+  Employee.findById(req.params.id)
+  .then( (foundEmp) => {
+    return foundEmp.addTraining(body['training-id'])
+  })// pass in the value of the selected drop down item
+  .then( (yay) => {
+    return Employee.update({
+      first_name: req.body.firstName,
+      last_name: req.body.lastName,
+      dept_id: req.body.deptId
+    }, {where:{id: req.params.id}})
+  })
+  .then(function(employee){
+    next(); //this goes to the second callback in the route, which is getSingleEmployee
   })
   .catch( (err) => {
     next(err); 
   });
 };
+
 
 //adds new employee
 module.exports.postEmployee = (req, res, next) => {

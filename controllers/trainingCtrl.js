@@ -3,7 +3,7 @@
 //get all training programs -gm
 module.exports.getTrainings = (req, res, next) => {
   const { Training } = req.app.get('models');
-  Training.findAll()
+  Training.findAll() 
   .then( (trainings) => {
     let progs = trainings.map( (prog) => {
       return prog.dataValues;
