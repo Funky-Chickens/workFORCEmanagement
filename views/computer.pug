@@ -7,7 +7,7 @@ block content
                     each owner in Employees
                             li #{owner.dataValues.first_name} #{owner.dataValues.last_name}
             else       
-                button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal") Delete
+                button(type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal") Delete
                     
     div(class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true")        
         div(class="modal-dialog" role="document")
