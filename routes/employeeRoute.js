@@ -16,12 +16,12 @@ router.get('/employees/create', renderCreateEmpPage);
 // //SINGLE EMPLOYEE
 router.get('/employees/:id', getSingleEmployee);
 
-router.put('/employees/:id', putEmployee);
+router.put('/employees/:id', putEmployee, getSingleEmployee); //two functions in the route, get to the second with "next()"
 
 router.post('/employees', postEmployee);
 
-//new route to delete only the relationship between an employee and the training program they are signed up for
-router.delete('/employee_training/:emp_id/:train_id', removeAssociationTraining)
+//new route to delete only the relationship between an employee and the training program they are signed up for -el
+router.delete('/employee_training/:emp_id/:train_id', removeAssociationTraining);
 
 // router.patch('/employees/:id', updateEmployee);
 

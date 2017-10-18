@@ -23,6 +23,11 @@ body {
 
 html {
     background-color: #364457;
+    list-style: none;
+}
+
+li {
+    list-style: none;
 }
 
 a:hover {
@@ -39,16 +44,12 @@ a:hover {
 }
 
 .padBot {
-    padding-bottom: 5%;
+    padding-bottom: 3%;
 }
 
 .nav-link {
     font-size: 2rem;
     color: #fff;
-}
-
-.navMen{
-   
 }
 
 .navBar {
@@ -75,5 +76,66 @@ a:hover {
     position: absolute;
     left: 33%;
     margin-left: -100px;
-  
+}
+
+.singleEmpList {
+    border-bottom: none;
+}
+
+.singleEmpList:hover {
+    background-color: #fff;
+    color: black;
+}
+
+.trainLists {
+    position: relative;
+    left: -3%;
+    font-family:" Prata";
+    font-size: 2rem;
+    
+}
+
+.compLists {
+    position: relative;
+    left: -3%;
+    font-family:" Prata";
+    font-size: 2rem;
+}
+
+.editBtn {
+    margin-left: 3%;
+    margin-bottom: 15px;
+}
+
+.addEmployee {
+    margin-left: 40%;
+    padding-left: 100px;
+    padding-right: 100px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.btn-outline-secondary a:hover {
+    color: white;
+}
+.btn-outline-secondary a {
+    color: #409BD7;
+}
+.btn-outline-secondary:hover a {
+    color: #fff;
+}
+
+.xbuttons {
+float:left;
+border: none;
+background-color: #fff;
+color: red;
+}
+
+.submitEmp {
+    margin-top: 8px;margin-left: 40%;
+    padding-left: 100px;
+    padding-right: 100px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }

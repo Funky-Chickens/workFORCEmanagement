@@ -10,13 +10,23 @@ module.exports.getSingleEmployee = (req, res, next) => {
     })
   });
   if (req.params.id !== 'popper.js.map') {
+    // Employee.findById(req.params.id)
+    // .then((foundEmp) => {
+    //   foundEmp.getTrainings()
+    //   .then( (trainings) => {
+    //     let employeeProgs = trainings.map( (training) => {
+    //       return training.dataValues
+    //     });
+    //     console.log("trainings", employeeProgs);
+    //   })
+    // })
     Employee.findAll(  //switched to findAll because it was the only kind of operator I could find in the docs to run a function to get stuff from a join table
       { 
         include: [{ 
           all: true //you can also include individual tables, but because of the join table in between, this include all will allow us to have access to an object with every related property
         }],
         where: {
-          id: req.params.id //this where statement takes the place of the effect of "getById"
+          id: req.params.id //this where statement takes the place of the effect of "findById"
         }
     }) 
     .then( (employee) => {
@@ -38,26 +48,27 @@ module.exports.getSingleEmployee = (req, res, next) => {
 
 
 module.exports.getEmployees = (req, res, next) => {
-  const { Employee } = req.app.get('models');
-    const { Department } = req.app.get('models'); //require this in order to include it below
-    Employee.findAll({include: [Department]}) //include Department and it becomes a property on the incoming GET
+  const { Employee, Department } = req.app.get('models');
+  Employee.findAll({include: [Department]}) //include Department and it becomes a property on the incoming GET -el
     .then( (employees) => {
-        let emps = employees.map( (emps) => {
-          return emps.dataValues;
-        });
-        res.render('employees', {emps});  //in PUG you just take it one dot further (emps.Department.whateverPropertyYouWanted)
-      })
-      .catch( (err) => {
-        next(err); 
-      });
-    };
+      let emps = employees.map( (emps) => {
+        return emps.dataValues;
+      }).sort(function(a, b) { //orders the employees by their ID -jmr
+        return parseFloat(a.id) - parseFloat(b.id);
+    });
+      res.render('employees', {emps});
+  })
+  .catch( (err) => {
+    next(err); 
+  });
+};
     
     //this function will take in the two IDs from the route params and then remove the association in the join table(magicmethod)
 module.exports.removeAssociationTraining = (req, res, next) => {
   const { Employee, Training } = req.app.get('models');  
   Employee.findById(parseInt(req.params.emp_id))
   .then( (foundEmp) => {
-    foundEmp.removeTrainings(req.params.train_id)
+    return foundEmp.removeTrainings(req.params.train_id)
     .then( (yay) => {
       res.status(200).redirect(`/employees/${req.params.id}`);
     })
@@ -71,23 +82,23 @@ module.exports.removeAssociationTraining = (req, res, next) => {
 };
 
 
+//updates employee information -jmr
 module.exports.putEmployee = (req, res, next) => {
   let body = req.body;
   const { Employee } = req.app.get('models');  
   Employee.findById(req.params.id)
   .then( (foundEmp) => {
-    foundEmp.addTraining(body['training-id'])// pass in the value of the selected drop down item
-    .then( (yay) => {
-      res.status(200);
+    return foundEmp.addTraining(body['training-id'])
+  })// pass in the value of the selected drop down item
+  .then( (yay) => {
+    return Employee.update({
+      first_name: req.body.firstName,
+      last_name: req.body.lastName,
+      dept_id: req.body.deptId
+    }, {where:{id: req.params.id}})
   })
-})
-  Employee.update({
-    first_name: req.body.firstName,
-    last_name: req.body.lastName,
-    dept_id: req.body.deptId
-  }, {where:{id: req.params.id}})
   .then(function(employee){
-    res.status(202).redirect(`/employees/${req.params.id}`);
+    next(); //this goes to the second callback in the route, which is getSingleEmployee
   })
   .catch( (err) => {
     next(err); 
@@ -95,6 +106,7 @@ module.exports.putEmployee = (req, res, next) => {
 };
 
 
+//adds new employee
 module.exports.postEmployee = (req, res, next) => {
   const { Employee } = req.app.get('models');
   Employee.create({
@@ -113,15 +125,15 @@ module.exports.postEmployee = (req, res, next) => {
   })
 }
 
-
+//pulls up the employee create form -gm
 module.exports.renderCreateEmpPage = (req, res, next) =>{
-    const { Department } = req.app.get('models');//require in department model
-    Department.findAll()  //find all departments
+    const { Department } = req.app.get('models');
+    Department.findAll() //find all departments -gm
     .then( (departments) => {
-      let depts = departments.map( (dept) => {//map over departments and return the data values
+      let depts = departments.map( (dept) => { //map over departments and return the data values -gm
         return dept.dataValues;
       });
-      res.render('employees-create', {depts});//render the employees create page with dropdown populated dynamically
+      res.render('employees-create', {depts}); //render the employees create page with dropdown populated dynamically -gm
     })
     .catch( (err) => {
       next(err);

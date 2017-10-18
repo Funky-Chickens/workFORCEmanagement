@@ -2,38 +2,43 @@ extends index.pug
 
 block content
     ul(id="empData")
-            li(class="lists") Name: #{emp.first_name} #{emp.last_name}<br>Department: #{emp.Department.name}<br> Employee Id: #{emp.id}
+            li(class="lists singleEmpList") Name: #{emp.first_name} #{emp.last_name}<br>Department: #{emp.Department.name}<br> Employee Id: #{emp.id}
             ul
                 each training in Trainings
-                        li Attendee of #{training.dataValues.name} 
+                        li(class="trainLists") Attendee of: #{training.dataValues.name} 
             ul
                 each comp in Computers
-                        li Assigned Computer ID: #{comp.dataValues.id} 
+                        li(class="compLists") Assigned Computer ID: #{comp.dataValues.id} 
 
 
 
-    button(type='button' class='btn' id="btn") Edit Employee 
-    div( class='hidden empForm' id="formBtn" action='')
-    form(method='POST' action=`/employees/${emp.id}?_method=PUT`)
+    button(type='button' class='btn btn-secondary editBtn' id="btn") Edit Employee 
+    div( class=' empForm' id="formBtn" action='')
+    form(method='POST' class='hidden'  id="editForm" action=`/employees/${emp.id}?_method=PUT`)
         p(id='empID' class='hidden') #{emp.id}
-        label(for="firstName") First Name
+        label(for="firstName") First Name: &nbsp;&nbsp;
         input(type='text' name='firstName' class='' id="firstName" value=emp.first_name)
-        label(for="lastName") Last Name
+        br
+        label(for="lastName") Last Name: &nbsp;&nbsp;
         input(type='text' name='lastName' class='' id="lastName" value=emp.last_name)
-        label(for="deptId") Department ID
+        br
+        label(for="deptId") Dept ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
         input(type='number' name='deptId' class='' id="deptId" value=emp.dept_id)
-        div Training Programs
+        div 
+            br
             for train in Trainings
-                p #{train.name}
-                button(class="xbuttons", name=`${emp.id}`, value=`${train.id}`) X
+                button(class="xbuttons", name=`${emp.id}`, value=`${train.id}`) X </span>
+                p #{train.name} <span> 
+            br
                 //- Get these with jQuery by class, but use the name and value attributes to collect their data on the other side
         div
-            label(for="training-id") Add Training for Employee:
+            label(for="training-id") Add Training for Employee:&nbsp;&nbsp; 
             select(name="training-id")
                 option(value="" disabled selected) Select:
                     for opt in PossibleTrainings
                         option(value=`${opt.id}`) #{opt.name}
-            button(type="submit" id="btn2") Submit     
+                    
+        button(type="submit" id="btn2" class="btn btn-secondary submitEmp") Submit     
 
     script 
         include ../node_modules/jquery/dist/jquery.js

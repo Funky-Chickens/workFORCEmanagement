@@ -11,7 +11,7 @@ router.get('/departments', getDepartments);
 // router.post('/departments', postDepartment);
 
 // //SINGLE DEPARTMENT
-// router.get('/departments/:id', getSingleDepartment);
+router.get('/departments/:id', getSingleDepartment);
 
 // //DEPARTMENT FORM
 // router.get('/departments/create', renderDeptCreatePage);
