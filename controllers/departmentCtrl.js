@@ -24,11 +24,13 @@ module.exports.getSingleDepartment = (req, res, next) => {
   .then( (department) => {
       dept = department.dataValues;
       return Employee.findById(dept.supervisor_id)
+  })
   .then( (employee) => { //uses the supervisor id from the department and finds employee with associated ID -jmr
       supervisor = employee.dataValues
       return Employee.findAll({ //gets all employees from the department -jmr
         where: { dept_id: req.params.id }
       })
+  })
   .then( (employees) => {
       underlings = employees.map( (employee) => {
         return employee.dataValues
@@ -43,8 +45,6 @@ module.exports.getSingleDepartment = (req, res, next) => {
         supervisor,
         underlings
       });
-    });
-    });
   })
   .catch( (err) => {
     next(err); 
