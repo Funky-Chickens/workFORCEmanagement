@@ -44,7 +44,7 @@ a:hover {
 }
 
 .padBot {
-    padding-bottom: 3%;
+    padding-bottom: 1%;
 }
 
 .nav-link {
@@ -174,4 +174,8 @@ color: red;
 
 .deleteBtn {
     margin-left: 3%;
+}
+
+.menuItem {
+    font-size: 1.3rem;
 }
