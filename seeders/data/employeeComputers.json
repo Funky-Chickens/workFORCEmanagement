@@ -19,6 +19,26 @@
          {
             "employee_id": 5, 
             "computer_id": 5
+         },
+         {
+            "employee_id": 6, 
+            "computer_id": 6
+         },
+         {
+            "employee_id": 7, 
+            "computer_id": 7
+         },
+         {
+            "employee_id": 8, 
+            "computer_id": 8
+         },
+         {
+            "employee_id": 9, 
+            "computer_id": 9
+         },
+         {
+            "employee_id": 10, 
+            "computer_id": 10
          }
     ]
 }
