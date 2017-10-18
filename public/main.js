@@ -1,5 +1,7 @@
 'use strict';
 
+console.log("it works");
+
 let firstName =$('#firstName').val();
 let lastName =$('#lastName').val();
 let deptId =$('#deptId').val();
@@ -46,6 +48,7 @@ $(".btn").click(function(){
 $("#btn2").click(function(){
   $("#formBtn").addClass("hidden");
   alert("EMPLOYEE INFO SUCCESSFULLY UPDATED, mkay?")
+  location.reload();
 });
 
 
