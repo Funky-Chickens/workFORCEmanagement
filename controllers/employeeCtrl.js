@@ -8,55 +8,42 @@ module.exports.getSingleEmployee = (req, res, next) => {
     possibles = trainings.map( (training) => {
       return training.dataValues;
     })
-  });
-  if (req.params.id !== 'popper.js.map') {
-    // Employee.findById(req.params.id)
-    // .then((foundEmp) => {
-    //   foundEmp.getTrainings()
-    //   .then( (trainings) => {
-    //     let employeeProgs = trainings.map( (training) => {
-    //       return training.dataValues
-    //     });
-    //     console.log("trainings", employeeProgs);
-    //   })
-    // })
-    Employee.findAll(  //switched to findAll because it was the only kind of operator I could find in the docs to run a function to get stuff from a join table
-      { 
+    return Employee.findAll({  //switched to findAll because it was the only kind of operator I could find in the docs to run a function to get stuff from a join table
         include: [{ 
           all: true //you can also include individual tables, but because of the join table in between, this include all will allow us to have access to an object with every related property
         }],
-        where: {
-          id: req.params.id //this where statement takes the place of the effect of "findById"
-        }
-    }) 
-    .then( (employee) => {
-      let emp = employee[0].dataValues;
-      res.render('employee', {
-        emp,
-        PossibleTrainings: possibles,
-        Computers: emp.Computers,//send Computer property to employee.pug for reassigning computers
-        Trainings: emp.Trainings //Trainings is a property of this object - nested, same for Computers
-      });
+        where: { id: req.params.id }
     })
-    .catch( (err) => {
-      next(err);
+  })
+  .then( (employee) => {
+    let emp = employee[0].dataValues;
+    let Computers = emp.Computers;
+    if(Computers.length === 0) {
+      Computers.push({"dataValues": {id:0}})
+    }
+    res.render('employee', {
+      emp,
+      PossibleTrainings: possibles,
+      Computers,//send Computer property to employee.pug for reassigning computers
+      Trainings: emp.Trainings //Trainings is a property of this object - nested, same for Computers
     });
-  } else {
-    console.log("Error!", req.params.id);
-  }
+  })
+  .catch( (err) => {
+    next(err);
+  });
 };
 
 
 module.exports.getEmployees = (req, res, next) => {
   const { Employee, Department } = req.app.get('models');
   Employee.findAll({include: [Department]}) //include Department and it becomes a property on the incoming GET -el
-    .then( (employees) => {
-      let emps = employees.map( (emps) => {
-        return emps.dataValues;
-      }).sort(function(a, b) { //orders the employees by their ID -jmr
-        return parseFloat(a.id) - parseFloat(b.id);
+  .then( (employees) => {
+    let emps = employees.map( (emps) => {
+      return emps.dataValues;
+    }).sort(function(a, b) { //orders the employees by their ID -jmr
+      return parseFloat(a.id) - parseFloat(b.id);
     });
-      res.render('employees', {emps});
+    res.render('employees', {emps});
   })
   .catch( (err) => {
     next(err); 
@@ -69,18 +56,14 @@ module.exports.removeAssociationTraining = (req, res, next) => {
   Employee.findById(parseInt(req.params.emp_id))
   .then( (foundEmp) => {
     return foundEmp.removeTrainings(req.params.train_id)
-    .then( (yay) => {
-      res.status(200).redirect(`/employees/${req.params.id}`);
-    })
-    .catch( (err) => {
-      res.status(500).json(err);
-    });
+  })
+  .then( (yay) => {
+    res.status(200).redirect(`/employees/${req.params.id}`);
   })
   .catch( (error)=>{
     res.status(500).json(err);
   });
 };
-
 
 //updates employee information -jmr
 module.exports.putEmployee = (req, res, next) => {
@@ -155,15 +138,15 @@ module.exports.postEmployee = (req, res, next) => {
 
 //pulls up the employee create form -gm
 module.exports.renderCreateEmpPage = (req, res, next) =>{
-    const { Department } = req.app.get('models');
-    Department.findAll() //find all departments -gm
-    .then( (departments) => {
-      let depts = departments.map( (dept) => { //map over departments and return the data values -gm
-        return dept.dataValues;
-      });
-      res.render('employees-create', {depts}); //render the employees create page with dropdown populated dynamically -gm
-    })
-    .catch( (err) => {
-      next(err);
+  const { Department } = req.app.get('models');
+  Department.findAll() //find all departments -gm
+  .then( (departments) => {
+    let depts = departments.map( (dept) => { //map over departments and return the data values -gm
+      return dept.dataValues;
     });
-  };
+    res.render('employees-create', {depts}); //render the employees create page with dropdown populated dynamically -gm
+  })
+  .catch( (err) => {
+    next(err);
+  });
+};
