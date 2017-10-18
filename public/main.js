@@ -6,6 +6,7 @@ let firstName =$('#firstName').val();
 let lastName =$('#lastName').val();
 let deptId =$('#deptId').val();
 let empId = $('#empID').text();
+let compId= $('#compId').val();
 let name =$('#name').val();
 let startDate =$('#startDate').val();
 let endDate =$('#endDate').val();
