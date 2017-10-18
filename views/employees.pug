@@ -2,9 +2,9 @@ extends index.pug
 
 block content
     -url = '/employees/create';
-     button: a(href=url) Add Employee<br>
+     button(class="addEmployee btn btn-outline-secondary"): a(href=url) Add Employee<br>
 
     ul
         each employee in emps
             - url = `/employees/${employee.id}`;
-            li(class="lists"): a(href=url) #{employee.id} | #{employee.first_name} #{employee.last_name} | #{employee.Department.name}
+            li(class="lists"): a(href=url) #{employee.id} | #{employee.first_name} #{employee.last_name} - #{employee.Department.name}

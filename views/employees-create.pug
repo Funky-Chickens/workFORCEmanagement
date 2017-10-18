@@ -1,20 +1,21 @@
 extends index.pug
 
 block content
-    h1 Bangazon Workforce Management Create New Employee Form
-    form(method="POST",action='/employees')
-      label(for="first_name") Employee First Name:
-      input(type="text", name="first_name", required=true)
-      br
-      label(for="last_name") Employee Last Name:
-      input(type="text", name="last_name", required=true)
-      br
-      label(for="hire_date") Start Date:
-      input(type="date", name="hire_date", required=true)
-      br
-      label(for="dept_id") Department:
-      select(name="dept_id")
-        option(value="" disabled) Select:
-          for dept in depts
-            option(value=`${dept.id}`) #{dept.name}
-      button(type="submit" id="submitEmp") Submit New Employee
+   div(class="addComputer")
+      div(class="marginLeft")
+        form(method="POST",action='/employees')
+          label(for="first_name") Employee First Name: 
+          input(type="text", name="first_name", required=true)
+          br
+          label(for="last_name") Employee Last Name: 
+          input(type="text", name="last_name", required=true)
+          br
+          label(for="hire_date") Start Date:&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+          input(type="date", name="hire_date", required=true)
+          br
+          label(for="dept_id") Department:&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+          select(name="dept_id")
+            option(value="" disabled) Select:
+              for dept in depts
+                option(value=`${dept.id}`) #{dept.name}
+          button(type="submit" id="submitEmp" class="btn btn-secondary submitEmp" style="cursor: pointer;") Submit

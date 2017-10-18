@@ -1,20 +1,21 @@
 extends index.pug
 
 block content
-    p Computer Id: #{comp.id}<br>Manufacturer: #{comp.manufacturer}<br>Make: #{comp.make}<br> Purchase Date: #{comp.purchase_date}<br>
-            if Employees.length
-                ul Owners:
-                    each owner in Employees
-                            li #{owner.dataValues.first_name} #{owner.dataValues.last_name}
-            else       
-                button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal") Delete
-                    
-    div(class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true")        
-        div(class="modal-dialog" role="document")
-            div(class="modal-content")
-                div(class="modal-body")
-                    p Are you sure?
-                div(class="modal-footer")
-                    form(method='POST' action=`/computers/${comp.id}?_method=DELETE`)
-                        button(type="submit") Yes
-                    button(type="button" class="btn btn-secondary" data-dismiss="modal") No
+    div(class="marginLeft")
+        p Computer Id: #{comp.id}<br>Manufacturer: #{comp.manufacturer}<br>Make: #{comp.make}<br> Purchase Date: #{comp.purchase_date}<br>
+                if Employees.length
+                    ul Owners:
+                        each owner in Employees
+                                li #{owner.dataValues.first_name} #{owner.dataValues.last_name}
+                else       
+                    button(type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal" style="cursor: pointer;") Delete
+                        
+        div(class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true")        
+            div(class="modal-dialog" role="document")
+                div(class="modal-content")
+                    div(class="modal-body")
+                        p Are you sure?
+                    div(class="modal-footer")
+                        form(method='POST' action=`/computers/${comp.id}?_method=DELETE`)
+                            button(type="submit" style="cursor: pointer;") Yes
+                        button(type="button" class="btn btn-secondary" data-dismiss="modal" style="cursor: pointer;") No
