@@ -159,5 +159,14 @@ color: red;
     margin-top: 2%;
     margin-left: 2%;
     border-bottom: none;
+    margin-bottom: 2%;
+    padding-bottom: 2%;
+}
 
+.editBtn {
+    margin-bottom: 1%;
+}
+
+.deleteBtn {
+    margin-left: 3%;
 }
