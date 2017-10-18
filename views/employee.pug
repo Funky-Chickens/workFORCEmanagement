@@ -5,14 +5,14 @@ block content
             li(class="lists") Name: #{emp.first_name} #{emp.last_name}<br>Department: #{emp.Department.name}<br> Employee Id: #{emp.id}
             ul
                 each training in Trainings
-                        li Attendee of #{training.dataValues.name} 
+                        li Attendee of #{training.dataValues.name}
             ul
                 each comp in Computers
-                        li Assigned Computer ID: #{comp.dataValues.id} 
+                        li Assigned Computer ID: #{comp.dataValues.id}
 
 
 
-    button(type='button' class='btn' id="btn") Edit Employee 
+    button(type='button' class='btn' id="btn") Edit Employee
     div( class='hidden empForm' id="formBtn" action='')
     form(method='POST' action=`/employees/${emp.id}?_method=PUT`)
         p(id='empID' class='hidden') #{emp.id}
@@ -22,6 +22,9 @@ block content
         input(type='text' name='lastName' class='' id="lastName" value=emp.last_name)
         label(for="deptId") Department ID
         input(type='number' name='deptId' class='' id="deptId" value=emp.dept_id)
+        label(for="compId") Computer ID
+        input(type='number' name='compId' class='' id="compId" value=Computers[0].id)
+        //- from getSingleEmployee object, use [0] because it's an array
         div Training Programs
             for train in Trainings
                 p #{train.name}
@@ -33,9 +36,9 @@ block content
                 option(value="" disabled selected) Select:
                     for opt in PossibleTrainings
                         option(value=`${opt.id}`) #{opt.name}
-            button(type="submit" id="btn2") Submit     
+            button(type="submit" id="btn2") Submit
 
-    script 
+    script
         include ../node_modules/jquery/dist/jquery.js
         include ../public/employeepug.js
         //- Include separate file here to make sure it loads AFTER the pug loads
