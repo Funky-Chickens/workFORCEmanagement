@@ -10,8 +10,6 @@ block content
                 each comp in Computers
                         li(class="compLists") Assigned Computer ID: #{comp.dataValues.id} 
 
-
-
     button(type='button' class='btn btn-secondary editBtn' id="btn") Edit Employee 
     div( class=' empForm' id="formBtn" action='')
     form(method='POST' class='hidden'  id="editForm" action=`/employees/${emp.id}?_method=PUT`)
@@ -30,7 +28,10 @@ block content
                 button(class="xbuttons", name=`${emp.id}`, value=`${train.id}`) X </span>
                 p #{train.name} <span> 
             br
-                //- Get these with jQuery by class, but use the name and value attributes to collect their data on the other side
+
+        label(for="compId") Computer ID
+        input(type='number' name='compId' class='' id="compId" value=Computers[0].id)
+   
         div
             label(for="training-id") Add Training for Employee:&nbsp;&nbsp; 
             select(name="training-id")
