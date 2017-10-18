@@ -101,12 +101,14 @@ module.exports.putEmployee = (req, res, next) => {
           next(err);
         });
         }else{
-          console.log("Sorry, that computer doesn't exist");
+          console.log("That computer belongs to someone else.");
         }
       })
       .catch((err)=>{
         next(err)
       })
+    } else {
+      console.log("That computer does not exist.");
     }
   })
   .then(function(){
