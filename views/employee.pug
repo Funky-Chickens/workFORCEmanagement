@@ -10,7 +10,7 @@ block content
                 each comp in Computers
                         li(class="compLists") Assigned Computer ID: #{comp.dataValues.id} 
 
-    button(type='button' class='btn btn-secondary editBtn' id="btn") Edit Employee 
+    button(type='button' class='btn btn-secondary editBtn' id="btn" style="cursor: pointer;") Edit Employee 
     div( class=' empForm' id="formBtn" action='')
       form(method='POST' class='hidden'  id="editForm" action=`/employees/${emp.id}?_method=PUT`)
         p(id='empID' class='hidden') #{emp.id}
@@ -29,7 +29,7 @@ block content
         div 
             br
             for train in Trainings
-                button(class="xbuttons", name=`${emp.id}`, value=`${train.id}`) X </span>
+                button(class="xbuttons", name=`${emp.id}`, value=`${train.id}`, style="cursor: pointer;") X </span>
                 p #{train.name} <span> 
             br
         div
@@ -39,7 +39,7 @@ block content
                     for opt in PossibleTrainings
                         option(value=`${opt.id}`) #{opt.name}
                     
-        button(type="submit" id="btn2" class="btn btn-secondary submitEmp") Submit     
+        button(type="submit" id="btn2" class="btn btn-secondary submitEmp" style="cursor: pointer;") Submit     
 
     script 
         include ../node_modules/jquery/dist/jquery.js

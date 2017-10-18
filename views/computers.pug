@@ -2,7 +2,7 @@ extends index.pug
 
 block content
     -url = '/computers/create';
-    button(class="addEmployee btn btn-outline-secondary"): a(href=url) Add Computer<br>
+    button(class="addEmployee btn btn-outline-secondary" style="cursor: pointer;"): a(href=url) Add Computer<br>
     
     ul
         each computer in comps

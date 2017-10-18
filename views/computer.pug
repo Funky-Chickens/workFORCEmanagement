@@ -8,7 +8,7 @@ block content
                         each owner in Employees
                                 li #{owner.dataValues.first_name} #{owner.dataValues.last_name}
                 else       
-                    button(type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal") Delete
+                    button(type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal" style="cursor: pointer;") Delete
                         
         div(class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true")        
             div(class="modal-dialog" role="document")
@@ -17,5 +17,5 @@ block content
                         p Are you sure?
                     div(class="modal-footer")
                         form(method='POST' action=`/computers/${comp.id}?_method=DELETE`)
-                            button(type="submit") Yes
-                        button(type="button" class="btn btn-secondary" data-dismiss="modal") No
+                            button(type="submit" style="cursor: pointer;") Yes
+                        button(type="button" class="btn btn-secondary" data-dismiss="modal" style="cursor: pointer;") No

@@ -40,7 +40,7 @@ a:hover {
     text-align: center;
     background-color: #364457;
     color: #409BD7;
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 .padBot {
@@ -130,6 +130,11 @@ float:left;
 border: none;
 background-color: #fff;
 color: red;
+
+}
+
+.xbuttons:hover {
+    curser: pointer;
 }
 
 .submitEmp {
