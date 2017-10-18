@@ -1,15 +1,16 @@
 extends index.pug
 
 block content
-    h1 Bangazon Workforce Management Computer Input Form
-      form(method='POST', action=`/computers`)
-        label(for="manufacturer") Manufacturer:
+  div(class="addComputer")
+    form(method='POST', action=`/computers`)
+      div(class="marginLeft")
+        label(for="manufacturer" class="") Manufacturer: &nbsp;&nbsp;
         input(type="text", name="manufacturer", required)
         br
-        label(for="make") Make:
+        label(for="make") Make: &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
         input(type="text", name="make", required)
         br
-        label(for="purchase_date") Purchase Date:
+        label(for="purchase_date") Purchase Date:&nbsp;&nbsp; 
         input(type="date", name="purchase_date", required)
         br
-        button(type="submit" id="submitComp") Submit
+        button(type="submit" class="btn btn-secondary submitEmp" id="submitComp") Submit
